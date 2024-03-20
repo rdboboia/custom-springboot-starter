@@ -17,3 +17,4 @@ Seguridad:
 DB:
 	- h2
 	- liquibase
+
