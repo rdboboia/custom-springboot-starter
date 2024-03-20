@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: migrations/V01.0__Create_Test_Table.sql
+      relativeToChangelogFile: true
