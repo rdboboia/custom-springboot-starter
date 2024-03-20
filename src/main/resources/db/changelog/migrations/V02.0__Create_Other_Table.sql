@@ -1,3 +1,6 @@
+--liquibase formatted sql
+
+-- changeset liquibase:other_comment
 CREATE TABLE Otros (
     PersonID int,
     LastName varchar(255),
@@ -5,3 +8,4 @@ CREATE TABLE Otros (
     Address varchar(255),
     City varchar(255)
 );
+-- rollback DROP Otros;
