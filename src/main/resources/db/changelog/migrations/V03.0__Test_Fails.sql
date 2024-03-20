@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
--- changeset liquibase:create_ok_table
+--changeset liquibase:create_ok_table
 CREATE TABLE OkTable (
     PersonID int,
     LastName varchar(255),
@@ -12,7 +12,7 @@ CREATE TABLE OkTable (
 
 
 
--- changeset liquibase:create_invalid_table
+--changeset liquibase:create_invalid_table failOnError:false
 CREATE TABLE InvalidTable (
     PersonID int,
     LastName varchar(255),
