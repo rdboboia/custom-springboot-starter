@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
--- changeset liquibase:some_comment
+-- changeset liquibase:create_test_table
 CREATE TABLE Persons (
     PersonID int,
     LastName varchar(255),
@@ -8,4 +8,4 @@ CREATE TABLE Persons (
     Address varchar(255),
     City varchar(255)
 );
--- rollback DROP Persons;
+-- rollback DROP TABLE Persons;
