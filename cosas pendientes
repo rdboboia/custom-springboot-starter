@@ -1,0 +1,19 @@
+Documentación:
+	- swagger
+
+DB:
+	- transacciones
+	- flyway / liquibase
+
+Seguridad:
+	- peer token
+	- access token (service activity)
+	- https
+
+
+
+
+/// YA IMPLEMENTADO ///
+DB:
+	- h2
+	- liquibase
