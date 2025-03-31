@@ -1,12 +1,13 @@
 spring:
   h2:
+    # Console URL: http://localhost:8080/h2-console
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:file:./testdb
+    url: jdbc:h2:file:./testdb;MODE=ORACLE
     driverClassName: org.h2.Driver
     username: sa
-    password: password
+    password:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:

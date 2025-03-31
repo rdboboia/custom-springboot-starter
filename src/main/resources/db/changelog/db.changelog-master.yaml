@@ -1,5 +1,5 @@
 databaseChangeLog:
   - includeAll:
       path: migrations
-      errorIfMissingOrEmpty: true
+      errorIfMissingOrEmpty: false
       relativeToChangelogFile: true

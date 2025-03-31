@@ -1,0 +1,1 @@
+Here we will put the liquibase templates for basic DB operations.
