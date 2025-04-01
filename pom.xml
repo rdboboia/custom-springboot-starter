@@ -124,6 +124,14 @@
                         <compilerArg>
                             -Amapstruct.unmappedTargetPolicy=ERROR
                         </compilerArg>
+                        <!-- Mapstruct unmapped source policy error level -->
+                        <compilerArg>
+                            -Amapstruct.unmappedSourcePolicy=ERROR
+                        </compilerArg>
+                        <!-- Mapstruct default component model (spring) -->
+                        <compilerArg>
+                            -Amapstruct.defaultComponentModel=spring
+                        </compilerArg>
                     </compilerArgs>
                 </configuration>
             </plugin>
