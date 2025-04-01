@@ -4,6 +4,7 @@ My plan is to keep ip updated and well documented so that it can be understood a
 
 # TODOs
 - Transactions
+- Jacoco coverage check
 - Security ?
 	+ peer token
 	+ access token (service activity)
