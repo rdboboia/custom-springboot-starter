@@ -7,7 +7,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 
 /** {@link Product} and {@link ProductType} mapper. */
-@Mapper(componentModel = "spring")
+@Mapper
 public interface ProductMapper {
 
   ProductDto toDto(Product product);
