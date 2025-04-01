@@ -14,8 +14,15 @@ My plan is to keep ip updated and well documented so that it can be understood a
 This project uses Google Java Format. You can find the official install configuration on Google's GitHub:
 https://github.com/google/google-java-format
 
-Additional configuration is required for Eclipse IDE to properly organize improts:
-To comply with Google Checkstyle, go to `Window` > `Preferences` > `Java` > `Code Style` > `Organize Imports`, delete all default groups and add a single `*` static import group and a single `*` import group. Apply changes.
+### Additional configuration (Eclise IDE Only)
+#### Organize Imports
+Additional configuration is required for Eclipse IDE to properly organize imports:
+To comply with Google's style, go to `Window` > `Preferences` > `Java` > `Code Style` > `Organize Imports`, delete all default groups and add a single `*` static import group and a single `*` import group. Apply changes.
+
+#### New line indentation
+Additional configuration is required for Eclipse IDE to properly indent new lines:
+To comply with Google's style, go to `Window` > `Preferences` > `Java` > `Code Style` > `Formatter`, click on `Edit`.
+In the first list `Indentation` change `Tab Size` to `2`.
 
 # Recommended IDE plugins
 - EclEmma Java Code Coverage
