@@ -12,6 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/** {@link ProductType} entity. */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,13 +21,11 @@ import lombok.NoArgsConstructor;
 @Table(name = "PRODUCT_TYPE")
 public class ProductType {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productTypeSeq")
-	@SequenceGenerator(sequenceName = "SEQ_PRODUCT_TYPE", name = "productTypeSeq", allocationSize = 1)
-	@Column
-	private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productTypeSeq")
+  @SequenceGenerator(sequenceName = "SEQ_PRODUCT_TYPE", name = "productTypeSeq", allocationSize = 1)
+  @Column
+  private Long id;
 
-	@Column
-	private String name;
-
+  @Column private String name;
 }

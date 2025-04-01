@@ -10,40 +10,38 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public enum ProductTypeEnum {
+  REQUEST_SIGNATURE(1L, "Food"),
 
-	REQUEST_SIGNATURE(1L, "Food"),
+  REQUEST_EXECUTION(2L, "Drink"),
 
-	REQUEST_EXECUTION(2L, "Drink"),
+  FOLLOW_UP_VISITS(3L, "Other");
 
-	FOLLOW_UP_VISITS(3L, "Other");
+  private final Long id;
+  private final String name;
 
-	private final Long id;
-	private final String name;
+  /**
+   * Builds and returns a new {@link ProductType} entity based on the instance of {@link
+   * ProductTypeEnum}.
+   *
+   * @return the {@link ProductType} entity.
+   */
+  public ProductType getEntity() {
+    return ProductType.builder().id(this.id).name(this.name).build();
+  }
 
-	/**
-	 * Builds and returns a new {@link ProductType} entity based on the instance of
-	 * {@link ProductTypeEnum}.
-	 *
-	 * @return the {@link ProductType} entity.
-	 */
-	public ProductType getEntity() {
-		return ProductType.builder().id(this.id).name(this.name).build();
-	}
+  /**
+   * Retrieves the {@link ProductTypeEnum} from the {@link ProductType} ID.
+   *
+   * @param id the ID of the {@link ProductType}.
+   * @return the {@link ProductTypeEnum} that corresponds to the provided {@link ProductType} ID.
+   */
+  public static ProductTypeEnum getEnumFromId(Long id) {
+    for (ProductTypeEnum e : ProductTypeEnum.values()) {
+      if (e.getId().equals(id)) {
+        return e;
+      }
+    }
 
-	/**
-	 * Retrieves the {@link ProductTypeEnum} from the {@link ProductType} ID.
-	 *
-	 * @param id the ID of the {@link ProductType}.
-	 * @return the {@link ProductTypeEnum} that corresponds to the provided
-	 *         {@link ProductType} ID.
-	 */
-	public static ProductTypeEnum getEnumFromId(Long id) {
-		for (ProductTypeEnum e : ProductTypeEnum.values()) {
-			if (e.getId().equals(id)) {
-				return e;
-			}
-		}
-
-		throw new IllegalArgumentException("No enum value for provided ID: " + id);
-	}
+    throw new IllegalArgumentException("No enum value for provided ID: " + id);
+  }
 }

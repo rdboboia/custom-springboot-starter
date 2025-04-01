@@ -14,6 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/** {@link Product} entity. */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,17 +23,15 @@ import lombok.NoArgsConstructor;
 @Table(name = "PRODUCT")
 public class Product {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productSeq")
-	@SequenceGenerator(sequenceName = "SEQ_PRODUCT", name = "productSeq", allocationSize = 1)
-	@Column
-	private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "productSeq")
+  @SequenceGenerator(sequenceName = "SEQ_PRODUCT", name = "productSeq", allocationSize = 1)
+  @Column
+  private Long id;
 
-	@Column
-	private String name;
+  @Column private String name;
 
-	@ManyToOne
-	@JoinColumn(name = "FK_PRODUCT_TYPE", nullable = false)
-	private ProductType type;
-
+  @ManyToOne
+  @JoinColumn(name = "FK_PRODUCT_TYPE", nullable = false)
+  private ProductType type;
 }
