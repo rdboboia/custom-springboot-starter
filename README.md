@@ -3,6 +3,7 @@ This is my customized springboot starter with all libraries and utilities that I
 My plan is to keep ip updated and well documented so that it can be understood and used by anyone.
 
 # TODOs
+- Specifications
 - Transactions
 - Jacoco coverage check
 - Security ?
