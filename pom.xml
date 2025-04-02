@@ -177,6 +177,11 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/mapper/*Impl.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <!-- Prepare agent -->
                     <execution>
@@ -237,9 +242,6 @@
                                                 ${jacoco-coverage-check-threshold-bundle}</minimum>
                                         </limit>
                                     </limits>
-                                    <excludes>
-                                        <exclude>com.abc.ClassName</exclude>
-                                    </excludes>
                                 </rule>
                             </rules>
                         </configuration>
