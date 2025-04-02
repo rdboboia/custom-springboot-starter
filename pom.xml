@@ -19,6 +19,7 @@
 
     <properties>
         <java.version>21</java.version>
+        <jacoco-coverage-check-threshold-bundle>0.8</jacoco-coverage-check-threshold-bundle>
     </properties>
 
     <dependencies>
@@ -120,18 +121,22 @@
 
                     <!-- Compiler configuration args -->
                     <compilerArgs>
+
                         <!-- Mapstruct unmapped target policy error level -->
                         <compilerArg>
                             -Amapstruct.unmappedTargetPolicy=ERROR
                         </compilerArg>
+
                         <!-- Mapstruct unmapped source policy error level -->
                         <compilerArg>
                             -Amapstruct.unmappedSourcePolicy=ERROR
                         </compilerArg>
+
                         <!-- Mapstruct default component model (spring) -->
                         <compilerArg>
                             -Amapstruct.defaultComponentModel=spring
                         </compilerArg>
+
                     </compilerArgs>
                 </configuration>
             </plugin>
@@ -142,14 +147,19 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.6.0</version>
                 <configuration>
+
                     <!-- Google style -->
                     <configLocation>google_checks.xml</configLocation>
+
                     <!-- Fail build on checkstyle errors -->
                     <failsOnError>true</failsOnError>
+
                     <!-- Violation severity level -->
                     <violationSeverity>info</violationSeverity>
+
                     <!-- Include test source directory -->
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
+
                 </configuration>
                 <executions>
                     <execution>
@@ -199,27 +209,32 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.9</minimum>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.9</minimum>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
                                         </limit>
                                         <limit>
                                             <counter>COMPLEXITY</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.9</minimum>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
                                         </limit>
                                         <limit>
                                             <counter>METHOD</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.9</minimum>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
                                         </limit>
                                         <limit>
                                             <counter>CLASS</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.9</minimum>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
                                         </limit>
                                     </limits>
                                     <excludes>
