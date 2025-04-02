@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <jacoco-coverage-check-threshold-bundle>0.8</jacoco-coverage-check-threshold-bundle>
+        <jacoco-coverage-check-threshold-bundle>0.9</jacoco-coverage-check-threshold-bundle>
     </properties>
 
     <dependencies>
@@ -141,11 +141,14 @@
                 </configuration>
             </plugin>
 
-            <!-- Checkstyle configuration -->
+            <!-- Checkstyle -->
             <plugin>
+                <!-- Checkstyle plugin -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.6.0</version>
+
+                <!-- Checkstyle configuration -->
                 <configuration>
 
                     <!-- Google style -->
@@ -161,6 +164,8 @@
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
 
                 </configuration>
+
+                <!-- Checkstyle executions -->
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -172,16 +177,23 @@
                 </executions>
             </plugin>
 
-            <!-- Jacoco configuration -->
+            <!-- Jacoco -->
             <plugin>
+                <!-- Jacoco plugin -->
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
+
+                <!-- Jacoco configuration -->
                 <configuration>
                     <excludes>
+                        <!-- Exclude generated mapper implementation classes
+                        (default and static custom methods are still checked) -->
                         <exclude>**/mapper/*Impl.*</exclude>
                     </excludes>
                 </configuration>
+
+                <!-- JaCoCo executions -->
                 <executions>
                     <!-- Prepare agent -->
                     <execution>
@@ -191,7 +203,7 @@
                     </execution>
 
                     <!-- Generate code coverage report (can be found in
-                    target/site) -->
+                    target/site/jacoco/intex.html) -->
                     <execution>
                         <id>generate-code-coverage-report</id>
                         <phase>test</phase>
@@ -200,7 +212,7 @@
                         </goals>
                     </execution>
 
-                    <!-- Check code coverage -->
+                    <!-- Check if code coverage thresholds are met -->
                     <execution>
                         <id>check</id>
                         <goals>
@@ -248,8 +260,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
         </plugins>
     </build>
 
