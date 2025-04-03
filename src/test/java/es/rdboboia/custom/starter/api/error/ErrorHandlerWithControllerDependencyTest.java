@@ -5,9 +5,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import es.rdboboia.custom.starter.api.controller.ProductController;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
@@ -30,11 +27,6 @@ class ErrorHandlerWithControllerDependencyTest {
   @MockitoBean private ProductService productService;
 
   @MockitoBean private ProductMapper productMapper;
-
-  private final ObjectMapper objectMapper =
-      new ObjectMapper()
-          .registerModule(new JavaTimeModule())
-          .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
   @Test
   void getAllProductsTest() throws Exception {
