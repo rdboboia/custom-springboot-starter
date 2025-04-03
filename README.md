@@ -100,9 +100,8 @@ Some components are intented to be just an example and they should be removed or
 This project uses Google Java Format. You can find the official install configuration on Google's GitHub:
 https://github.com/google/google-java-format
 
-### Additional configuration (Eclise IDE Only)
-For Eclise (and STS) some additional configuration is needed. This might not apply to other IDEs.
-
+### Additional configuration (Eclipse IDE Only)
+For Eclipse (and STS) some additional configuration is needed. This might not apply to other IDEs.
 #### Organize Imports
 Additional configuration is required for Eclipse IDE to properly organize imports:
 To comply with Google's style, go to `Window` > `Preferences` > `Java` > `Code Style` > `Organize Imports`, delete all default groups and add a single `*` static import group and a single `*` import group. Apply changes.
