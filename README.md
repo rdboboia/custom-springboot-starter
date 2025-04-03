@@ -26,7 +26,7 @@ These should not change too much. They are the base of this custom starter.
 - **Input Validation**
     + DTO validation.
 - **Junit 5 (Jupiter)**
-    + Unit teting.
+    + Unit testing.
 - **OpenAPI**
     + API documentation + swagger UI.
 - **H2**
