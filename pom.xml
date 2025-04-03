@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>21</java.version>
-        <jacoco-coverage-check-threshold-bundle>0.9</jacoco-coverage-check-threshold-bundle>
+        <jacoco-coverage-check-threshold-bundle>0.90</jacoco-coverage-check-threshold-bundle>
     </properties>
 
     <dependencies>
