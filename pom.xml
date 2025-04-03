@@ -19,22 +19,34 @@
 
     <properties>
         <java.version>21</java.version>
+        <jacoco-coverage-check-threshold-bundle>0.90</jacoco-coverage-check-threshold-bundle>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
 
+        <!-- Spring boot web starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Spring boot JPA starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Spring boot input validations -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- Required for junit extension implementation -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <!-- Swagger URL: http://localhost:8080/swagger-ui/index.html -->
@@ -44,40 +56,38 @@
             <version>2.8.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
+        <!-- Lombok dependency -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <!-- H2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- Liquibase dependency -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+
+        <!-- Mapstruct dependency -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>1.6.3</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Exclude lombok from packaged JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -91,10 +101,12 @@
                 </configuration>
             </plugin>
 
+            <!-- Maven compiler configuration -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <!-- Annotation processors -->
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -106,24 +118,54 @@
                             <version>1.6.3</version>
                         </path>
                     </annotationProcessorPaths>
+
+                    <!-- Compiler configuration args -->
                     <compilerArgs>
+
+                        <!-- Mapstruct unmapped target policy error level -->
                         <compilerArg>
                             -Amapstruct.unmappedTargetPolicy=ERROR
                         </compilerArg>
+
+                        <!-- Mapstruct unmapped source policy error level -->
+                        <compilerArg>
+                            -Amapstruct.unmappedSourcePolicy=ERROR
+                        </compilerArg>
+
+                        <!-- Mapstruct default component model (spring) -->
+                        <compilerArg>
+                            -Amapstruct.defaultComponentModel=spring
+                        </compilerArg>
+
                     </compilerArgs>
                 </configuration>
             </plugin>
 
+            <!-- Checkstyle -->
             <plugin>
+                <!-- Checkstyle plugin -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.6.0</version>
+
+                <!-- Checkstyle configuration -->
                 <configuration>
+
+                    <!-- Google style -->
                     <configLocation>google_checks.xml</configLocation>
+
+                    <!-- Fail build on checkstyle errors -->
                     <failsOnError>true</failsOnError>
+
+                    <!-- Violation severity level -->
                     <violationSeverity>info</violationSeverity>
+
+                    <!-- Include test source directory -->
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
+
                 </configuration>
+
+                <!-- Checkstyle executions -->
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -131,6 +173,94 @@
                         <goals>
                             <goal>check</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Jacoco -->
+            <plugin>
+                <!-- Jacoco plugin -->
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.13</version>
+
+                <!-- Jacoco configuration -->
+                <configuration>
+                    <excludes>
+                        <!-- Exclude generated mapper implementation classes
+                        (default and static custom methods are still checked) -->
+                        <exclude>**/mapper/*Impl.*</exclude>
+                    </excludes>
+                </configuration>
+
+                <!-- JaCoCo executions -->
+                <executions>
+                    <!-- Prepare agent -->
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Generate code coverage report (can be found in
+                    target/site/jacoco/intex.html) -->
+                    <execution>
+                        <id>generate-code-coverage-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Check if code coverage thresholds are met -->
+                    <execution>
+                        <!-- Check documentation:
+                        https://www.eclemma.org/jacoco/trunk/doc/check-mojo.html -->
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Coverage counters documentation:
+                            https://www.eclemma.org/jacoco/trunk/doc/counters.html -->
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>COMPLEXITY</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>METHOD</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>
+                                                ${jacoco-coverage-check-threshold-bundle}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

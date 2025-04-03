@@ -10,11 +10,11 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public enum ProductTypeEnum {
-  REQUEST_SIGNATURE(1L, "Food"),
+  FOOD(1L, "Food"),
 
-  REQUEST_EXECUTION(2L, "Drink"),
+  DRINK(2L, "Drink"),
 
-  FOLLOW_UP_VISITS(3L, "Other");
+  OTHER(3L, "Other");
 
   private final Long id;
   private final String name;

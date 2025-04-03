@@ -1,4 +1,4 @@
-package es.rdboboia.custom.starter.controller;
+package es.rdboboia.custom.starter.api.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import es.rdboboia.custom.starter.api.controller.ProductController;
 import es.rdboboia.custom.starter.api.dto.ProductDto;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
