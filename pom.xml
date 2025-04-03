@@ -214,11 +214,15 @@
 
                     <!-- Check if code coverage thresholds are met -->
                     <execution>
+                        <!-- Check documentation:
+                        https://www.eclemma.org/jacoco/trunk/doc/check-mojo.html -->
                         <id>check</id>
                         <goals>
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <!-- Coverage counters documentation:
+                            https://www.eclemma.org/jacoco/trunk/doc/counters.html -->
                             <rules>
                                 <rule>
                                     <element>BUNDLE</element>
