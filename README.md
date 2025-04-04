@@ -77,10 +77,10 @@ Some components are intented to be just an example and they should be removed or
 
 
 # TODOs
-- Jacoco coverage check
 - Liquibase templates
 - Specifications / Query by Example
 - Transactions
+- Cache
 - Security ?
 	+ peer token
 	+ access token (service activity)
