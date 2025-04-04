@@ -77,7 +77,6 @@ Some components are intented to be just an example and they should be removed or
 
 
 # TODOs
-- Liquibase templates
 - Specifications / Query by Example
 - Transactions
 - Cache
