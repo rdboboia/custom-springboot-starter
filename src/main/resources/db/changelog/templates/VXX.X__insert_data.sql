@@ -1,8 +1,10 @@
 --liquibase formatted sql
 
+
 --------------------------------------------------------
 --  DATA for Table <TABLE_NAME>
 --------------------------------------------------------
+
 
 --changeset liquibase:vXX.X_insert_data_<table_name>
 INSERT INTO "<TABLE_NAME>" VALUES ("<SEQ_TABLE_NAME>".nextval,    'Name1');

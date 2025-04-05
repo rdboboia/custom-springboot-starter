@@ -1,8 +1,10 @@
 --liquibase formatted sql
 
+
 --------------------------------------------------------
---  ALTER Table <TABLE_NAME>
+--  ALTER Table <TABLE_NAME> add <COLUMN_NAME> FK constraint
 --------------------------------------------------------
+
 
 --changeset liquibase:vXX.X_create_fk_<fk_constraint_name>
 ALTER TABLE "<TABLE_NAME>"

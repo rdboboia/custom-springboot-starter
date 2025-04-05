@@ -1,8 +1,10 @@
 --liquibase formatted sql
 
+
 --------------------------------------------------------
 --  DDL for Table <TABLE_NAME>
 --------------------------------------------------------
+
 
 --changeset liquibase:vXX.X_create_<seq_table_name>
 CREATE SEQUENCE "<SEQ_TABLE_NAME>" START WITH 1 INCREMENT BY 1;
