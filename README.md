@@ -21,7 +21,7 @@ The latest version of each component is encouraged.
 These should not change too much. They are the base of this custom starter.
 - **Lombok**
     + Object common methods.
-- **JPA**
+- **JPA + Spring Data JPA**
     + Persistence manager.
 - **Input Validation**
     + DTO validation.
