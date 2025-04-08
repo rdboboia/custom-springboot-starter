@@ -77,6 +77,7 @@ Some components are intented to be just an example and they should be removed or
 
 
 # TODOs
+- Input validaiton
 - Specifications / Query by Example
 - Transactions
 - Cache
