@@ -80,7 +80,7 @@ Some components are intented to be just an example and they should be removed or
 - Input validaiton (lib already imported; missing usage)
 - Specifications / Query by Example
 - Junit examples
-    + any error for booleans
+    + any error for primitives
 - Transactions
 - Cache
 - Security ?
