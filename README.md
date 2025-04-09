@@ -77,8 +77,10 @@ Some components are intented to be just an example and they should be removed or
 
 
 # TODOs
-- Input validaiton
+- Input validaiton (lib already imported; missing usage)
 - Specifications / Query by Example
+- Junit examples
+    + any error for booleans
 - Transactions
 - Cache
 - Security ?
