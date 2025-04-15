@@ -21,7 +21,7 @@ The latest version of each component is encouraged.
 These should not change too much. They are the base of this custom starter.
 - **Lombok**
     + Object common methods.
-- **JPA**
+- **JPA + Spring Data JPA**
     + Persistence manager.
 - **Input Validation**
     + DTO validation.
@@ -37,6 +37,7 @@ These should not change too much. They are the base of this custom starter.
     + DB changes manager (kinda like GIT, but for the DB).
     + Custom configuration:
         * Check application.yaml.
+    + Templates for basic DB operations.
 - **Mapstruct**
     + Object to object mapping.
     + Custom configuration:
@@ -77,8 +78,10 @@ Some components are intented to be just an example and they should be removed or
 
 
 # TODOs
-- Liquibase templates
 - Specifications / Query by Example
+- Input validation (lib already imported; missing usage)
+- Junit examples
+    + any error for primitives
 - Transactions
 - Cache
 - Security ?
