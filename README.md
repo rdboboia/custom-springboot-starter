@@ -79,7 +79,7 @@ Some components are intented to be just an example and they should be removed or
 
 # TODOs
 - Specifications / Query by Example
-- Input validaiton (lib already imported; missing usage)
+- Input validation (lib already imported; missing usage)
 - Junit examples
     + any error for primitives
 - Transactions
