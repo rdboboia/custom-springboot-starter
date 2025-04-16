@@ -80,6 +80,7 @@ Some components are intented to be just an example and they should be removed or
 
 # TODOs
 - Specifications / Query by Example
+- Generic components (generic mapper, generic repo, etc)
 - Input validation (lib already imported; missing usage)
 - Junit examples
     + any error for primitives

@@ -1,7 +1,7 @@
 package es.rdboboia.custom.starter.persistence.repository;
 
 import es.rdboboia.custom.starter.persistence.entity.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
+import es.rdboboia.custom.starter.persistence.repository.base.GenericBaseRepository;
 
 /** {@link Product} repository. */
-public interface ProductRepository extends JpaRepository<Product, Long> {}
+public interface ProductRepository extends GenericBaseRepository<Product, Long> {}
