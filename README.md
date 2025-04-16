@@ -25,6 +25,7 @@ These should not change too much. They are the base of this custom starter.
     + Persistence manager.
 - **Input Validation**
     + DTO validation.
+    + DTO inheritance.
 - **Junit 5 (Jupiter)**
     + Unit testing.
 - **OpenAPI**
