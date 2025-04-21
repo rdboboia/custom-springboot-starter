@@ -4,6 +4,7 @@ import es.rdboboia.custom.starter.api.error.dto.ResponseErrorDto;
 import java.time.ZonedDateTime;
 import java.util.NoSuchElementException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -23,6 +24,19 @@ public class ErrorHandler {
 
   @ExceptionHandler(NoSuchElementException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
+  public ResponseErrorDto handleNoSuchElementException(Exception exception, WebRequest request) {
+    return this.getResponseErrorDto(exception);
+  }
+
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  public ResponseErrorDto handleMethodArgumentNotValidException(
+      MethodArgumentNotValidException exception, WebRequest request) {
+    return this.getResponseErrorDto(exception);
+  }
+
+  @ExceptionHandler(Exception.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   public ResponseErrorDto handleException(Exception exception, WebRequest request) {
     return this.getResponseErrorDto(exception);
   }
