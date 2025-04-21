@@ -6,7 +6,7 @@ import java.util.List;
 /** {@link Product} service interface for CRUD operations. */
 public interface ProductService {
 
-  List<Product> getAllProducts();
+  List<Product> getAllProducts(Product filters);
 
   Product getProductById(Long id);
 

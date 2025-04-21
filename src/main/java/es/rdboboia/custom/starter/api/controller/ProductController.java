@@ -41,7 +41,7 @@ public interface ProductController {
             content = @Content(schema = @Schema(implementation = String.class)))
       })
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  List<ProductDto> getAllProducts();
+  List<ProductDto> getAllProducts(ProductDto filters);
 
   @Operation(summary = "Get product by id", description = "Get the product by id")
   @ApiResponses(

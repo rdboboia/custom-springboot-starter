@@ -17,8 +17,9 @@ public class ProductControllerImpl implements ProductController {
   private final ProductMapper productMapper;
 
   @Override
-  public List<ProductDto> getAllProducts() {
-    return this.productMapper.toDto(this.productService.getAllProducts());
+  public List<ProductDto> getAllProducts(ProductDto filters) {
+    return this.productMapper.toDto(
+        this.productService.getAllProducts(this.productMapper.toEntity(filters)));
   }
 
   @Override

@@ -6,7 +6,7 @@ import es.rdboboia.custom.starter.service.ProductService;
 import es.rdboboia.custom.starter.utils.FieldsUtils;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 /** {@link ProductService} implementation. */
@@ -16,9 +16,10 @@ public class ProductServiceImpl implements ProductService {
   private final ProductRepository productRepository;
 
   @Override
-  public List<Product> getAllProducts() {
-    Specification<Product> specification = (root, query, criteriaBuilder) -> null;
-    return this.productRepository.findAll(specification);
+  public List<Product> getAllProducts(Product filters) {
+    //    Specification<Product> specification = (root, query, criteriaBuilder) -> null;
+    Example<Product> example = Example.of(filters);
+    return this.productRepository.findAll(example);
   }
 
   @Override
