@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import es.rdboboia.custom.starter.api.dto.ProductDto;
+import es.rdboboia.custom.starter.api.dto.ProductTypeDto;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
 import es.rdboboia.custom.starter.persistence.entity.Product;
@@ -27,6 +28,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+/**
+ * Test class mainly focused on the API layer since the implementation itself does not have that
+ * much happening.
+ */
 @WebMvcTest(ProductController.class)
 @ExtendWith({VerifyNoMoreInteractionsExtension.class})
 class ProductControllerTest {
@@ -42,20 +47,34 @@ class ProductControllerTest {
           .registerModule(new JavaTimeModule())
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+  /**
+   * Test for getAllProducts method.
+   *
+   * <p>Note here that we are checking that the filters are being mapped correctly before calling
+   * the mapper. If the filters are not mapped correctly, the test will fail before reaching the
+   * mapper.
+   *
+   * @throws Exception if an error occurs during the test.
+   */
   @Test
   void getAllProductsTest() throws Exception {
     // Init
+    ProductTypeDto productTypeDto = ProductTypeDto.builder().id(1L).build();
+    ProductDto filtersDto = ProductDto.builder().id(1L).type(productTypeDto).build();
+    Product filters = new Product();
+
     List<Product> products = List.of();
     List<ProductDto> productDtos = List.of();
 
     // Arrange
-    when(this.productService.getAllProducts()).thenReturn(products);
+    when(this.productMapper.toEntity(filtersDto)).thenReturn(filters);
+    when(this.productService.getAllProducts(filters)).thenReturn(products);
     when(this.productMapper.toDto(products)).thenReturn(productDtos);
 
     // Act
     String responseContentAsString =
         this.mockMvc
-            .perform(get(ProductController.BASE_URL))
+            .perform(get(ProductController.BASE_URL).param("id", "1").param("type.id", "1"))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse()
@@ -68,7 +87,8 @@ class ProductControllerTest {
     assertEquals(productDtos, response);
 
     // Verify
-    verify(this.productService).getAllProducts();
+    verify(this.productMapper).toEntity(filtersDto);
+    verify(this.productService).getAllProducts(filters);
     verify(this.productMapper).toDto(products);
   }
 

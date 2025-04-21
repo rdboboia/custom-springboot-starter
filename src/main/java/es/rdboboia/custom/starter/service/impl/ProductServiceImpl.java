@@ -6,6 +6,7 @@ import es.rdboboia.custom.starter.service.ProductService;
 import es.rdboboia.custom.starter.utils.FieldsUtils;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 /** {@link ProductService} implementation. */
@@ -15,8 +16,8 @@ public class ProductServiceImpl implements ProductService {
   private final ProductRepository productRepository;
 
   @Override
-  public List<Product> getAllProducts() {
-    return this.productRepository.findAll();
+  public List<Product> getAllProducts(Product filters) {
+    return this.productRepository.findAll(Example.of(filters));
   }
 
   @Override
