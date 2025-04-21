@@ -43,9 +43,8 @@ class ErrorHandlerWithControllerDependencyTest {
             .andReturn()
             .getResponse();
 
-    System.out.println(response.getContentAsString());
-
     // Assert
+    assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatus());
     assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatus());
 
     // Verify
