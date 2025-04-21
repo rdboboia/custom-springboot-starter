@@ -45,7 +45,6 @@ class ErrorHandlerWithControllerDependencyTest {
 
     // Assert
     assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatus());
-    assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatus());
 
     // Verify
     verify(this.productService).deleteProduct(id);
