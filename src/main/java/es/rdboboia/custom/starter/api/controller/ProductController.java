@@ -1,6 +1,7 @@
 package es.rdboboia.custom.starter.api.controller;
 
-import es.rdboboia.custom.starter.api.dto.ProductDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductWithoutIdDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,7 +77,7 @@ public interface ProductController {
             content = @Content(schema = @Schema(implementation = String.class)))
       })
   @PostMapping
-  ProductDto saveProduct(@RequestBody ProductDto productDto);
+  ProductDto saveProduct(@Valid @RequestBody ProductWithoutIdDto productDto);
 
   @Operation(summary = "Update product", description = "Update a product non null fields")
   @ApiResponses(
