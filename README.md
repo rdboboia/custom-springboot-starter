@@ -24,8 +24,8 @@ These should not change too much. They are the base of this custom starter.
 - **JPA + Spring Data JPA**
     + Persistence manager.
 - **Input Validation**
-    + DTO validation.
-    + DTO inheritance.
+    + DTO validation (pending).
+    + DTO inheritance (pending).
 - **Junit 5 (Jupiter)**
     + Unit testing.
 - **OpenAPI**
@@ -81,9 +81,9 @@ Some components are intented to be just an example and they should be removed or
 # TODOs
 I'm usually working on the first element of the following list:
 - Specifications / Query by Example
+- Input validation + DTO inheritance (lib already imported; missing usage).
 - Pagination
 - Generic components (generic mapper, generic repo, etc)
-- Input validation (lib already imported; missing usage)
 - Junit examples
     + any error for primitives
 - Transactions
