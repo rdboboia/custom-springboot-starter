@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +41,7 @@ public interface ProductController {
             content = @Content(schema = @Schema(implementation = String.class)))
       })
   @GetMapping
-  List<ProductDto> getAllProducts(ProductDto filters);
+  List<ProductDto> getAllProducts(@ModelAttribute ProductDto filters);
 
   @Operation(summary = "Get product by id", description = "Get the product by id")
   @ApiResponses(
