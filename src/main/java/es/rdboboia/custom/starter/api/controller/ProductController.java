@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface ProductController {
 
   public static final String BASE_URL = "/product";
-  public static final String FILTERS_URL_VARIABLE = "/filters";
   public static final String ID_URL_VARIABLE = "/{id}";
 
   @Operation(summary = "Get product list", description = "Get the list of all products")
