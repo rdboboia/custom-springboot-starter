@@ -2,6 +2,7 @@ package es.rdboboia.custom.starter.api.error.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.ZonedDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +24,6 @@ public class ResponseErrorDto {
 
   @Schema(description = "Error details", example = "Some error details")
   private String details;
+
+  private List<String> errors;
 }
