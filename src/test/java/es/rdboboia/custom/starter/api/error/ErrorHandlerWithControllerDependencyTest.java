@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import es.rdboboia.custom.starter.api.controller.ProductController;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
+import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.service.ProductService;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
@@ -31,9 +32,10 @@ class ErrorHandlerWithControllerDependencyTest {
   @Test
   void getAllProductsTest() throws Exception {
     // Init
+    Product product = new Product();
 
     // Arrange
-    when(this.productService.getAllProducts()).thenThrow(new NoSuchElementException());
+    when(this.productService.getAllProducts(product)).thenThrow(new NoSuchElementException());
 
     // Act
     MockHttpServletResponse response =
@@ -43,6 +45,6 @@ class ErrorHandlerWithControllerDependencyTest {
     assertEquals(404, response.getStatus());
 
     // Verify
-    verify(this.productService).getAllProducts();
+    verify(this.productService).getAllProducts(product);
   }
 }

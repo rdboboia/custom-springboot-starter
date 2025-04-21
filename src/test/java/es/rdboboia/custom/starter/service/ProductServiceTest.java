@@ -16,6 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Example;
 
 @ExtendWith({MockitoExtension.class, VerifyNoMoreInteractionsExtension.class})
 class ProductServiceTest {
@@ -27,13 +28,14 @@ class ProductServiceTest {
   @Test
   void getAllProductsTest() {
     // Init.
+    Product filters = new Product();
     List<Product> products = List.of();
 
     // Arrange
-    when(this.productRepository.findAll()).thenReturn(products);
+    when(this.productRepository.findAll(Example.of(filters))).thenReturn(products);
 
     // Act
-    List<Product> allProducts = this.productServiceImpl.getAllProducts();
+    List<Product> allProducts = this.productServiceImpl.getAllProducts(filters);
 
     // Assert
     assertThat(allProducts).isNotNull().isEqualTo(products);
