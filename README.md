@@ -79,6 +79,7 @@ Some components are intented to be just an example and they should be removed or
 
 
 # TODOs
+I'm usually working on the first element of the following list:
 - Specifications / Query by Example
 - Pagination
 - Generic components (generic mapper, generic repo, etc)

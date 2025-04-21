@@ -17,9 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public List<Product> getAllProducts(Product filters) {
-    //    Specification<Product> specification = (root, query, criteriaBuilder) -> null;
-    Example<Product> example = Example.of(filters);
-    return this.productRepository.findAll(example);
+    return this.productRepository.findAll(Example.of(filters));
   }
 
   @Override
