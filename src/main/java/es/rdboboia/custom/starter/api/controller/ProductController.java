@@ -9,7 +9,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -24,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface ProductController {
 
   public static final String BASE_URL = "/product";
+  public static final String FILTERS_URL_VARIABLE = "/filters";
   public static final String ID_URL_VARIABLE = "/{id}";
 
   @Operation(summary = "Get product list", description = "Get the list of all products")
@@ -40,8 +40,8 @@ public interface ProductController {
             description = "Internal service error.",
             content = @Content(schema = @Schema(implementation = String.class)))
       })
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  List<ProductDto> getAllProducts(ProductDto filters);
+  @PostMapping(value = FILTERS_URL_VARIABLE)
+  List<ProductDto> getAllProducts(@RequestBody ProductDto filters);
 
   @Operation(summary = "Get product by id", description = "Get the product by id")
   @ApiResponses(
