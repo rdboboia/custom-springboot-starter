@@ -40,8 +40,8 @@ public interface ProductController {
             description = "Internal service error.",
             content = @Content(schema = @Schema(implementation = String.class)))
       })
-  @PostMapping(value = FILTERS_URL_VARIABLE)
-  List<ProductDto> getAllProducts(@RequestBody ProductDto filters);
+  @GetMapping
+  List<ProductDto> getAllProducts(ProductDto filters);
 
   @Operation(summary = "Get product by id", description = "Get the product by id")
   @ApiResponses(
