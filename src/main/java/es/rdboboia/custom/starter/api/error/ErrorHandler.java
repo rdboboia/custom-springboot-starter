@@ -29,12 +29,19 @@ public class ErrorHandler {
   }
 
   private ValidationErrorResponseDto getValidationErrorDto(
-      Exception exception, List<String> errors) {
+      MethodArgumentNotValidException exception) {
 
-    ValidationErrorResponseDto errorDto = (ValidationErrorResponseDto) this.getErrorDto(exception);
-    errorDto.setErrors(errors);
+    List<String> errors =
+        exception.getBindingResult().getFieldErrors().stream()
+            .map(e -> e.getField() + " " + e.getDefaultMessage())
+            .toList();
 
-    return errorDto;
+    return ValidationErrorResponseDto.builder()
+        .timestamp(ZonedDateTime.now())
+        .message("Validation error")
+        .details("There are validation errors in the request")
+        .errors(errors)
+        .build();
   }
 
   /* ****************** */
@@ -48,25 +55,11 @@ public class ErrorHandler {
     return this.getErrorDto(exception);
   }
 
-  /**
-   * Handle {@link MethodArgumentNotValidException} properly returning the fields with validation
-   * errors.
-   *
-   * @param exception {@link MethodArgumentNotValidException}.
-   * @param request {@link WebRequest} request.
-   * @return response {@link BaseErrorResponseDto}.
-   */
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public BaseErrorResponseDto handleMethodArgumentNotValidException(
+  public ValidationErrorResponseDto handleMethodArgumentNotValidException(
       MethodArgumentNotValidException exception, WebRequest request) {
-
-    List<String> errors =
-        exception.getBindingResult().getFieldErrors().stream()
-            .map(e -> e.getField() + " " + e.getDefaultMessage())
-            .toList();
-
-    return this.getValidationErrorDto(exception, errors);
+    return this.getValidationErrorDto(exception);
   }
 
   @ExceptionHandler(Exception.class)
