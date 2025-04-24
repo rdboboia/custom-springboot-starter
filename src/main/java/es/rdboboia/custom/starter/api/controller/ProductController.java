@@ -3,11 +3,7 @@ package es.rdboboia.custom.starter.api.controller;
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductWithoutIdDto;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.ArraySchema;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -29,80 +25,27 @@ public interface ProductController {
   public static final String ID_URL_VARIABLE = "/{id}";
 
   @Operation(summary = "Get product list", description = "Get the list of all products")
-  @ApiResponses(
-      value = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "List of Product",
-            content =
-                @Content(
-                    array = @ArraySchema(schema = @Schema(implementation = ProductDto.class)))),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Internal service error.",
-            content = @Content(schema = @Schema(implementation = String.class)))
-      })
+  @ApiResponse(responseCode = "200", description = "List of products")
   @GetMapping
   List<ProductDto> getAllProducts(@ModelAttribute ProductDto filters);
 
   @Operation(summary = "Get product by id", description = "Get the product by id")
-  @ApiResponses(
-      value = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "Product",
-            content = @Content(schema = @Schema(implementation = ProductDto.class))),
-        @ApiResponse(
-            responseCode = "404",
-            description = "Product not found",
-            content = @Content(schema = @Schema(implementation = String.class))),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Internal service error.",
-            content = @Content(schema = @Schema(implementation = String.class)))
-      })
+  @ApiResponse(responseCode = "200", description = "Product object")
   @GetMapping(value = ID_URL_VARIABLE)
   ProductDto getProductById(@PathVariable Long id);
 
   @Operation(summary = "Save product", description = "Save a new product")
-  @ApiResponses(
-      value = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "Product",
-            content = @Content(schema = @Schema(implementation = ProductDto.class))),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Internal service error.",
-            content = @Content(schema = @Schema(implementation = String.class)))
-      })
+  @ApiResponse(responseCode = "200", description = "Product created")
   @PostMapping
   ProductDto saveProduct(@Valid @RequestBody ProductWithoutIdDto productDto);
 
   @Operation(summary = "Update product", description = "Update a product non null fields")
-  @ApiResponses(
-      value = {
-        @ApiResponse(
-            responseCode = "200",
-            description = "Product",
-            content = @Content(schema = @Schema(implementation = ProductDto.class))),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Internal service error.",
-            content = @Content(schema = @Schema(implementation = String.class)))
-      })
+  @ApiResponse(responseCode = "200", description = "Product updated")
   @PatchMapping(value = ID_URL_VARIABLE)
   ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto);
 
   @Operation(summary = "Delete product", description = "Delete a product by id")
-  @ApiResponses(
-      value = {
-        @ApiResponse(responseCode = "200", description = "Product deleted"),
-        @ApiResponse(
-            responseCode = "500",
-            description = "Internal service error.",
-            content = @Content(schema = @Schema(implementation = String.class)))
-      })
+  @ApiResponse(responseCode = "200", description = "Product deleted")
   @DeleteMapping(value = ID_URL_VARIABLE)
   void deleteProduct(@PathVariable Long id);
 }
