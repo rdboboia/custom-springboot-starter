@@ -2,8 +2,12 @@ package es.rdboboia.custom.starter.api.controller;
 
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductWithoutIdDto;
+import es.rdboboia.custom.starter.api.error.dto.ValidationErrorResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
@@ -35,14 +39,23 @@ public interface ProductController {
   ProductDto getProductById(@PathVariable Long id);
 
   @Operation(summary = "Save product", description = "Save a new product")
-  @ApiResponse(responseCode = "200", description = "Product created")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "200", description = "Product saved"),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Validation error",
+            content = {
+              @Content(schema = @Schema(implementation = ValidationErrorResponseDto.class))
+            })
+      })
   @PostMapping
   ProductDto saveProduct(@Valid @RequestBody ProductWithoutIdDto productDto);
 
   @Operation(summary = "Update product", description = "Update a product non null fields")
   @ApiResponse(responseCode = "200", description = "Product updated")
   @PatchMapping(value = ID_URL_VARIABLE)
-  ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto);
+  ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductWithoutIdDto productDto);
 
   @Operation(summary = "Delete product", description = "Delete a product by id")
   @ApiResponse(responseCode = "200", description = "Product deleted")

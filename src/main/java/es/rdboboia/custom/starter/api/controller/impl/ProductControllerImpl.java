@@ -35,7 +35,7 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ProductDto updateProduct(Long id, ProductDto productDto) {
+  public ProductDto updateProduct(Long id, ProductWithoutIdDto productDto) {
     return this.productMapper.toDto(
         this.productService.updateProduct(id, this.productMapper.toEntity(productDto)));
   }
