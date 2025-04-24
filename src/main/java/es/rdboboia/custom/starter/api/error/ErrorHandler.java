@@ -48,13 +48,6 @@ public class ErrorHandler {
   /* EXCEPTION HANDLERS */
   /* ****************** */
 
-  @ExceptionHandler(NoSuchElementException.class)
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  public BaseErrorResponseDto handleNoSuchElementException(
-      Exception exception, WebRequest request) {
-    return this.getErrorDto(exception);
-  }
-
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ValidationErrorResponseDto handleMethodArgumentNotValidException(
@@ -62,9 +55,23 @@ public class ErrorHandler {
     return this.getValidationErrorDto(exception);
   }
 
+  @ExceptionHandler(NoSuchElementException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public BaseErrorResponseDto handleNoSuchElementException(
+      NoSuchElementException exception, WebRequest request) {
+    return this.getErrorDto(exception);
+  }
+
+  @ExceptionHandler(IllegalArgumentException.class)
+  @ResponseStatus(HttpStatus.CONFLICT)
+  public BaseErrorResponseDto handleIllegalArgumentException(
+      IllegalArgumentException exception, WebRequest request) {
+    return this.getErrorDto(exception);
+  }
+
   @ExceptionHandler(Exception.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  public BaseErrorResponseDto handleException(Exception exception, WebRequest request) {
+  public BaseErrorResponseDto handleAnyOtherException(Exception exception, WebRequest request) {
     return this.getErrorDto(exception);
   }
 }
