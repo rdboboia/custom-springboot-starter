@@ -9,12 +9,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /** {@link ProductType} DTO. */
-@Schema(description = "Product type object for save / update operations")
+@Schema(description = "Product type object for product save / update operations")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductTypePostDto {
+public class ProductTypeParentPostDto {
 
   @NotNull
   @Schema(description = ProductTypeDto.ID_DESCRIPTION, example = ProductTypeDto.ID_EXAMPLE)

@@ -1,6 +1,6 @@
 package es.rdboboia.custom.starter.api.dto.product;
 
-import es.rdboboia.custom.starter.api.dto.producttype.ProductTypePostDto;
+import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeParentPostDto;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
@@ -12,22 +12,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /** {@link Product} DTO. */
-@Schema(description = "Product object for save / update operations")
+@Schema(description = "Product object for product POST operation")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class ProductPostDto {
 
-  static final String ID_DESCRIPTION = "Product ID";
-  static final String ID_EXAMPLE = "1";
-
-  static final String NAME_DESCRIPTION = "Product name";
-  static final String NAME_EXAMPLE = "Some product name";
-
   @NotBlank
-  @Schema(description = NAME_DESCRIPTION, example = NAME_EXAMPLE)
+  @Schema(description = ProductDto.NAME_DESCRIPTION, example = ProductDto.NAME_EXAMPLE)
   private String name;
 
-  @NotNull @Valid private ProductTypePostDto type;
+  @NotNull @Valid private ProductTypeParentPostDto type;
 }
