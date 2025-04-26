@@ -2,7 +2,7 @@ package es.rdboboia.custom.starter.api.controller.impl;
 
 import es.rdboboia.custom.starter.api.controller.ProductController;
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
-import es.rdboboia.custom.starter.api.dto.product.ProductWithoutIdDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.service.ProductService;
 import java.util.List;
@@ -29,13 +29,13 @@ public class ProductControllerImpl implements ProductController {
   }
 
   @Override
-  public ProductDto saveProduct(ProductWithoutIdDto productDto) {
+  public ProductDto saveProduct(ProductPostDto productDto) {
     return this.productMapper.toDto(
         this.productService.saveProduct(this.productMapper.toEntity(productDto)));
   }
 
   @Override
-  public ProductDto updateProduct(Long id, ProductWithoutIdDto productDto) {
+  public ProductDto updateProduct(Long id, ProductPostDto productDto) {
     return this.productMapper.toDto(
         this.productService.updateProduct(id, this.productMapper.toEntity(productDto)));
   }

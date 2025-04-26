@@ -2,8 +2,6 @@ package es.rdboboia.custom.starter.api.dto.producttype;
 
 import es.rdboboia.custom.starter.persistence.entity.ProductType;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,11 +15,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductTypeDto {
 
-  @NotNull
-  @Schema(description = "Product type ID", example = "1")
+  static final String ID_DESCRIPTION = "Product type ID";
+  static final String ID_EXAMPLE = "1";
+
+  static final String NAME_DESCRIPTION = "Product type name";
+  static final String NAME_EXAMPLE = "Some product type name";
+
+  @Schema(description = ID_DESCRIPTION, example = ID_EXAMPLE)
   private Long id;
 
-  @Null
-  @Schema(description = "Product type name", example = "Some product type name")
+  @Schema(description = NAME_DESCRIPTION, example = NAME_EXAMPLE)
   private String name;
 }

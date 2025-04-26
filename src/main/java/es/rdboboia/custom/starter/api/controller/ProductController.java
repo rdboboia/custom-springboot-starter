@@ -1,7 +1,7 @@
 package es.rdboboia.custom.starter.api.controller;
 
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
-import es.rdboboia.custom.starter.api.dto.product.ProductWithoutIdDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.error.dto.ValidationErrorResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -50,12 +50,12 @@ public interface ProductController {
             })
       })
   @PostMapping
-  ProductDto saveProduct(@Valid @RequestBody ProductWithoutIdDto productDto);
+  ProductDto saveProduct(@Valid @RequestBody ProductPostDto productDto);
 
   @Operation(summary = "Update product", description = "Update a product non null fields")
   @ApiResponse(responseCode = "200", description = "Product updated")
   @PatchMapping(value = ID_URL_VARIABLE)
-  ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductWithoutIdDto productDto);
+  ProductDto updateProduct(@PathVariable Long id, @Valid @RequestBody ProductPostDto productDto);
 
   @Operation(summary = "Delete product", description = "Delete a product by id")
   @ApiResponse(responseCode = "200", description = "Product deleted")
