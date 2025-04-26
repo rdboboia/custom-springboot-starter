@@ -27,8 +27,8 @@ This is the complete list of components and a high level overview of the functio
     + Persistence manager.
     + Query By Example (QBE) filtering.
 - **Input Validation**
-    + DTO validation (pending).
-    + DTO inheritance (pending).
+    + DTO validation.
+    + DTO inheritance (for error responses).
 - **Junit 5 (Jupiter)**
     + Unit testing.
 - **OpenAPI**
@@ -120,7 +120,6 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
-- Input validation + DTO inheritance (lib already imported; missing usage).
 - Transactions.
 - Pagination.
 - Junit examples.
