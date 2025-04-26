@@ -55,7 +55,7 @@ public interface ProductController {
   @Operation(summary = "Update product", description = "Update a product non null fields")
   @ApiResponse(responseCode = "200", description = "Product updated")
   @PatchMapping(value = ID_URL_VARIABLE)
-  ProductDto updateProduct(@PathVariable Long id, @Valid @RequestBody ProductPostDto productDto);
+  ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductPostDto productDto);
 
   @Operation(summary = "Delete product", description = "Delete a product by id")
   @ApiResponse(responseCode = "200", description = "Product deleted")
