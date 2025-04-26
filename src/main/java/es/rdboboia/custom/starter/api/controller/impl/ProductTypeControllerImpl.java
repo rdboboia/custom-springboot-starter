@@ -1,6 +1,5 @@
 package es.rdboboia.custom.starter.api.controller.impl;
 
-import es.rdboboia.custom.starter.api.controller.ProductController;
 import es.rdboboia.custom.starter.api.controller.ProductTypeController;
 import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeDto;
 import es.rdboboia.custom.starter.api.dto.producttype.ProductTypePostDto;
@@ -11,7 +10,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
-/** {@link ProductController} implementation. */
+/** {@link ProductTypeController} implementation. */
 @RequiredArgsConstructor
 @RestController
 public class ProductTypeControllerImpl implements ProductTypeController {
