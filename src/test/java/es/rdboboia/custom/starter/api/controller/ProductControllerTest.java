@@ -42,7 +42,6 @@ class ProductControllerTest {
   @Autowired private MockMvc mockMvc;
 
   @MockitoBean private ProductService productService;
-
   @MockitoBean private ProductMapper productMapper;
 
   private final ObjectMapper objectMapper =
@@ -109,7 +108,7 @@ class ProductControllerTest {
     // Act
     String responseContentAsString =
         this.mockMvc
-            .perform(get(ProductController.BASE_URL + "/" + id))
+            .perform(get(ProductController.BASE_URL + ProductController.ID_URL_VARIABLE, id))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse()
@@ -183,7 +182,7 @@ class ProductControllerTest {
     String responseContentAsString =
         this.mockMvc
             .perform(
-                patch(ProductController.BASE_URL + "/" + id)
+                patch(ProductController.BASE_URL + ProductController.ID_URL_VARIABLE, id)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(this.objectMapper.writeValueAsString(productPatchDto)))
             .andExpect(status().isOk())
@@ -208,7 +207,9 @@ class ProductControllerTest {
     Long id = 1L;
 
     // Act
-    this.mockMvc.perform(delete(ProductController.BASE_URL + "/" + id)).andExpect(status().isOk());
+    this.mockMvc
+        .perform(delete(ProductController.BASE_URL + ProductController.ID_URL_VARIABLE, id))
+        .andExpect(status().isOk());
 
     // Verify
     verify(this.productService).deleteProduct(id);
