@@ -1,6 +1,7 @@
 package es.rdboboia.custom.starter.api.controller;
 
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.error.dto.ValidationErrorResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,12 +32,12 @@ public interface ProductController {
   @Operation(summary = "Get product list", description = "Get the list of all products")
   @ApiResponse(responseCode = "200", description = "List of products")
   @GetMapping
-  List<ProductDto> getAllProducts(@ModelAttribute ProductDto filters);
+  List<ProductDto> getAll(@ModelAttribute ProductDto filters);
 
   @Operation(summary = "Get product by id", description = "Get the product by id")
   @ApiResponse(responseCode = "200", description = "Product object")
   @GetMapping(value = ID_URL_VARIABLE)
-  ProductDto getProductById(@PathVariable Long id);
+  ProductDto getById(@PathVariable Long id);
 
   @Operation(summary = "Save product", description = "Save a new product")
   @ApiResponses(
@@ -50,15 +51,24 @@ public interface ProductController {
             })
       })
   @PostMapping
-  ProductDto saveProduct(@Valid @RequestBody ProductPostDto productDto);
+  ProductDto save(@Valid @RequestBody ProductPostDto productDto);
 
   @Operation(summary = "Update product", description = "Update a product non null fields")
-  @ApiResponse(responseCode = "200", description = "Product updated")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "200", description = "Product updated"),
+        @ApiResponse(
+            responseCode = "400",
+            description = "Validation error",
+            content = {
+              @Content(schema = @Schema(implementation = ValidationErrorResponseDto.class))
+            })
+      })
   @PatchMapping(value = ID_URL_VARIABLE)
-  ProductDto updateProduct(@PathVariable Long id, @RequestBody ProductPostDto productDto);
+  ProductDto update(@PathVariable Long id, @Valid @RequestBody ProductPatchDto productDto);
 
   @Operation(summary = "Delete product", description = "Delete a product by id")
   @ApiResponse(responseCode = "200", description = "Product deleted")
   @DeleteMapping(value = ID_URL_VARIABLE)
-  void deleteProduct(@PathVariable Long id);
+  void delete(@PathVariable Long id);
 }

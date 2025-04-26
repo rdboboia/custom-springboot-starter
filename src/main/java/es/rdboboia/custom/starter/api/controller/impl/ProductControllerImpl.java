@@ -2,6 +2,7 @@ package es.rdboboia.custom.starter.api.controller.impl;
 
 import es.rdboboia.custom.starter.api.controller.ProductController;
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.service.ProductService;
@@ -18,30 +19,30 @@ public class ProductControllerImpl implements ProductController {
   private final ProductMapper productMapper;
 
   @Override
-  public List<ProductDto> getAllProducts(ProductDto filters) {
+  public List<ProductDto> getAll(ProductDto filters) {
     return this.productMapper.toDto(
         this.productService.getAllProducts(this.productMapper.toEntity(filters)));
   }
 
   @Override
-  public ProductDto getProductById(Long id) {
+  public ProductDto getById(Long id) {
     return this.productMapper.toDto(this.productService.getProductById(id));
   }
 
   @Override
-  public ProductDto saveProduct(ProductPostDto productDto) {
+  public ProductDto save(ProductPostDto productDto) {
     return this.productMapper.toDto(
         this.productService.saveProduct(this.productMapper.toEntity(productDto)));
   }
 
   @Override
-  public ProductDto updateProduct(Long id, ProductPostDto productDto) {
+  public ProductDto update(Long id, ProductPatchDto productDto) {
     return this.productMapper.toDto(
         this.productService.updateProduct(id, this.productMapper.toEntity(productDto)));
   }
 
   @Override
-  public void deleteProduct(Long id) {
+  public void delete(Long id) {
     this.productService.deleteProduct(id);
   }
 }

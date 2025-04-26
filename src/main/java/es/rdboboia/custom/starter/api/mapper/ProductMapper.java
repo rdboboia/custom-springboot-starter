@@ -1,6 +1,7 @@
 package es.rdboboia.custom.starter.api.mapper;
 
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import java.util.List;
@@ -19,6 +20,9 @@ public interface ProductMapper {
 
   @Mapping(target = "id", ignore = true)
   Product toEntity(ProductPostDto dto);
+
+  @Mapping(target = "id", ignore = true)
+  Product toEntity(ProductPatchDto dto);
 
   /* ****** */
   /* TO DTO */
