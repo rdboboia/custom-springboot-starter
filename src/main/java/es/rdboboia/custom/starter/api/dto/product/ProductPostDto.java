@@ -29,5 +29,5 @@ public class ProductPostDto {
   @Schema(description = NAME_DESCRIPTION, example = NAME_EXAMPLE)
   private String name;
 
-  @Valid @NotNull private ProductTypePostDto type;
+  @NotNull @Valid private ProductTypePostDto type;
 }
