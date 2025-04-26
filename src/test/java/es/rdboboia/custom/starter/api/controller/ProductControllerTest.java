@@ -14,7 +14,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import es.rdboboia.custom.starter.api.dto.product.ProductDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
+import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeDto;
+import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeParentPostDto;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
 import es.rdboboia.custom.starter.persistence.entity.Product;
@@ -125,11 +128,15 @@ class ProductControllerTest {
   @Test
   void saveProductTest() throws Exception {
     // Init
+    ProductTypeParentPostDto productTypeDto = ProductTypeParentPostDto.builder().id(1L).build();
+    ProductPostDto productPostDto =
+        ProductPostDto.builder().name("Product").type(productTypeDto).build();
     ProductDto productDto = new ProductDto();
+
     Product product = new Product();
 
     // Arrange
-    when(this.productMapper.toEntity(productDto)).thenReturn(product);
+    when(this.productMapper.toEntity(productPostDto)).thenReturn(product);
     when(this.productService.saveProduct(product)).thenReturn(product);
     when(this.productMapper.toDto(product)).thenReturn(productDto);
 
@@ -139,7 +146,7 @@ class ProductControllerTest {
             .perform(
                 post(ProductController.BASE_URL)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(this.objectMapper.writeValueAsString(productDto)))
+                    .content(this.objectMapper.writeValueAsString(productPostDto)))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse()
@@ -151,7 +158,7 @@ class ProductControllerTest {
     assertEquals(productDto, response);
 
     // Verify
-    verify(this.productMapper).toEntity(productDto);
+    verify(this.productMapper).toEntity(productPostDto);
     verify(this.productService).saveProduct(product);
     verify(this.productMapper).toDto(product);
   }
@@ -160,11 +167,15 @@ class ProductControllerTest {
   void updateProductTest() throws Exception {
     // Init
     Long id = 1L;
+    ProductTypeParentPostDto productTypeDto = ProductTypeParentPostDto.builder().id(1L).build();
+    ProductPatchDto productPatchDto =
+        ProductPatchDto.builder().name("Product").type(productTypeDto).build();
     ProductDto productDto = new ProductDto();
+
     Product product = new Product();
 
     // Arrange
-    when(this.productMapper.toEntity(productDto)).thenReturn(product);
+    when(this.productMapper.toEntity(productPatchDto)).thenReturn(product);
     when(this.productService.updateProduct(id, product)).thenReturn(product);
     when(this.productMapper.toDto(product)).thenReturn(productDto);
 
@@ -174,7 +185,7 @@ class ProductControllerTest {
             .perform(
                 patch(ProductController.BASE_URL + "/" + id)
                     .contentType(MediaType.APPLICATION_JSON)
-                    .content(this.objectMapper.writeValueAsString(productDto)))
+                    .content(this.objectMapper.writeValueAsString(productPatchDto)))
             .andExpect(status().isOk())
             .andReturn()
             .getResponse()
@@ -186,7 +197,7 @@ class ProductControllerTest {
     assertEquals(productDto, response);
 
     // Verify
-    verify(this.productMapper).toEntity(productDto);
+    verify(this.productMapper).toEntity(productPatchDto);
     verify(this.productService).updateProduct(id, product);
     verify(this.productMapper).toDto(product);
   }
