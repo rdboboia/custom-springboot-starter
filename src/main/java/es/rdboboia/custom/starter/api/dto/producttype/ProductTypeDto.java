@@ -1,4 +1,4 @@
-package es.rdboboia.custom.starter.api.dto;
+package es.rdboboia.custom.starter.api.dto.producttype;
 
 import es.rdboboia.custom.starter.persistence.entity.ProductType;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,9 +15,15 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductTypeDto {
 
-  @Schema(description = "Product type ID", example = "1")
+  static final String ID_DESCRIPTION = "Product type ID";
+  static final String ID_EXAMPLE = "1";
+
+  static final String NAME_DESCRIPTION = "Product type name";
+  static final String NAME_EXAMPLE = "Some product type name";
+
+  @Schema(description = ID_DESCRIPTION, example = ID_EXAMPLE)
   private Long id;
 
-  @Schema(description = "Product type name", example = "Some product type name")
+  @Schema(description = NAME_DESCRIPTION, example = NAME_EXAMPLE)
   private String name;
 }
