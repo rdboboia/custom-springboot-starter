@@ -9,7 +9,6 @@ import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.repository.ProductRepository;
 import es.rdboboia.custom.starter.service.impl.ProductServiceImpl;
-import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @ExtendWith({MockitoExtension.class, VerifyNoMoreInteractionsExtension.class})
 class ProductServiceTest {
@@ -29,13 +30,14 @@ class ProductServiceTest {
   void getAllProductsTest() {
     // Init.
     Product filters = new Product();
-    List<Product> products = List.of();
+    Page<Product> products = Page.empty();
+    Pageable pageable = Pageable.unpaged();
 
     // Arrange
-    when(this.productRepository.findAll(Example.of(filters))).thenReturn(products);
+    when(this.productRepository.findAll(Example.of(filters), pageable)).thenReturn(products);
 
     // Act
-    List<Product> allProducts = this.productServiceImpl.getAllProducts(filters);
+    Page<Product> allProducts = this.productServiceImpl.getAllProducts(filters, pageable);
 
     // Assert
     assertThat(allProducts).isNotNull().isEqualTo(products);
