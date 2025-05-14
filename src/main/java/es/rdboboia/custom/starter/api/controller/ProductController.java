@@ -4,6 +4,7 @@ import es.rdboboia.custom.starter.api.dto.product.ProductDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.error.dto.ValidationErrorResponseDto;
+import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -35,7 +36,8 @@ public interface ProductController {
   @ApiResponse(responseCode = "200", description = "List of products")
   @GetMapping
   Page<ProductDto> getAll(
-      @ModelAttribute ProductDto filters, @PageableDefault(sort = {"name"}) Pageable pageable);
+      @ModelAttribute ProductDto filters,
+      @PageableDefault(sort = {Product.Fields.id}) Pageable pageable);
 
   @Operation(summary = "Get product by id", description = "Get the product by ID")
   @ApiResponse(responseCode = "200", description = "Product object")
