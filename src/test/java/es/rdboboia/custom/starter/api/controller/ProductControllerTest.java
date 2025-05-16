@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -25,6 +26,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.cloud.openfeign.support.PageJacksonModule;
+import org.springframework.cloud.openfeign.support.SortJacksonModule;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,6 +52,8 @@ class ProductControllerTest {
   private final ObjectMapper objectMapper =
       new ObjectMapper()
           .registerModule(new JavaTimeModule())
+          .registerModule(new PageJacksonModule())
+          .registerModule(new SortJacksonModule())
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
   /**
@@ -66,9 +71,8 @@ class ProductControllerTest {
     ProductTypeDto productTypeDto = ProductTypeDto.builder().id(1L).build();
     ProductDto filtersDto = ProductDto.builder().id(1L).type(productTypeDto).build();
     Product filters = new Product();
-    Pageable pageable = PageRequest.of(0, 10, Sort.by("id").ascending());
-    System.out.println(pageable);
 
+    Pageable pageable = PageRequest.of(0, 10, Sort.by("id").ascending());
     Page<Product> products = Page.empty();
     Page<ProductDto> productDtos = Page.empty();
 
@@ -86,11 +90,11 @@ class ProductControllerTest {
             .getResponse()
             .getContentAsString();
 
-    //    Page<ProductDto> response =
-    //        this.objectMapper.readValue(responseContentAsString, new TypeReference<>() {});
+    Page<ProductDto> response =
+        this.objectMapper.readValue(responseContentAsString, new TypeReference<>() {});
 
     // Assert
-    //    assertEquals(productDtos, response);
+    assertEquals(productDtos.getContent(), response.getContent());
 
     // Verify
     verify(this.productMapper).toEntity(filtersDto);
