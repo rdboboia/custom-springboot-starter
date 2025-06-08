@@ -95,6 +95,9 @@ class ProductControllerTest {
 
     // Assert
     assertEquals(productDtos.getContent(), response.getContent());
+    assertEquals(productDtos.getNumber(), response.getNumber());
+    assertEquals(productDtos.getSize(), response.getSize());
+    assertEquals(productDtos.getTotalElements(), response.getTotalElements());
 
     // Verify
     verify(this.productMapper).toEntity(filtersDto);

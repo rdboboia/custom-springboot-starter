@@ -32,7 +32,7 @@ public interface ProductController {
   public static final String BASE_URL = "/product";
   public static final String ID_URL_VARIABLE = "/{id}";
 
-  @Operation(summary = "Get product list", description = "Get the list of all products")
+  @Operation(summary = "Get product list", description = "Get the pagineted list of all products")
   @ApiResponse(responseCode = "200", description = "List of products")
   @GetMapping
   Page<ProductDto> getAll(
