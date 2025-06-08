@@ -6,8 +6,9 @@ import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.service.ProductService;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RestController;
 
 /** {@link ProductController} implementation. */
@@ -19,9 +20,9 @@ public class ProductControllerImpl implements ProductController {
   private final ProductMapper productMapper;
 
   @Override
-  public List<ProductDto> getAll(ProductDto filters) {
+  public Page<ProductDto> getAll(ProductDto filters, Pageable pageable) {
     return this.productMapper.toDto(
-        this.productService.getAllProducts(this.productMapper.toEntity(filters)));
+        this.productService.getAllProducts(this.productMapper.toEntity(filters), pageable));
   }
 
   @Override

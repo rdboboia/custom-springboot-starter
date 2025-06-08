@@ -7,6 +7,7 @@ import es.rdboboia.custom.starter.persistence.entity.Product;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.data.domain.Page;
 
 /** {@link Product} mapper. */
 @Mapper(uses = {ProductTypeMapper.class})
@@ -31,4 +32,8 @@ public interface ProductMapper {
   ProductDto toDto(Product product);
 
   List<ProductDto> toDto(List<Product> products);
+
+  default Page<ProductDto> toDto(Page<Product> products) {
+    return products.map(this::toDto);
+  }
 }

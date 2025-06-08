@@ -1,12 +1,13 @@
 package es.rdboboia.custom.starter.service;
 
 import es.rdboboia.custom.starter.persistence.entity.Product;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /** {@link Product} service interface for CRUD operations. */
 public interface ProductService {
 
-  List<Product> getAllProducts(Product filters);
+  Page<Product> getAllProducts(Product filters, Pageable pageable);
 
   Product getProductById(Long id);
 

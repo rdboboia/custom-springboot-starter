@@ -22,11 +22,16 @@ import es.rdboboia.custom.starter.api.mapper.ProductMapper;
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.service.ProductService;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.cloud.openfeign.support.PageJacksonModule;
+import org.springframework.cloud.openfeign.support.SortJacksonModule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -47,6 +52,8 @@ class ProductControllerTest {
   private final ObjectMapper objectMapper =
       new ObjectMapper()
           .registerModule(new JavaTimeModule())
+          .registerModule(new PageJacksonModule())
+          .registerModule(new SortJacksonModule())
           .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
   /**
@@ -65,12 +72,13 @@ class ProductControllerTest {
     ProductDto filtersDto = ProductDto.builder().id(1L).type(productTypeDto).build();
     Product filters = new Product();
 
-    List<Product> products = List.of();
-    List<ProductDto> productDtos = List.of();
+    Pageable pageable = PageRequest.of(0, 10, Sort.by("id").ascending());
+    Page<Product> products = Page.empty();
+    Page<ProductDto> productDtos = Page.empty();
 
     // Arrange
     when(this.productMapper.toEntity(filtersDto)).thenReturn(filters);
-    when(this.productService.getAllProducts(filters)).thenReturn(products);
+    when(this.productService.getAllProducts(filters, pageable)).thenReturn(products);
     when(this.productMapper.toDto(products)).thenReturn(productDtos);
 
     // Act
@@ -82,15 +90,18 @@ class ProductControllerTest {
             .getResponse()
             .getContentAsString();
 
-    List<ProductDto> response =
+    Page<ProductDto> response =
         this.objectMapper.readValue(responseContentAsString, new TypeReference<>() {});
 
     // Assert
-    assertEquals(productDtos, response);
+    assertEquals(productDtos.getContent(), response.getContent());
+    assertEquals(productDtos.getNumber(), response.getNumber());
+    assertEquals(productDtos.getSize(), response.getSize());
+    assertEquals(productDtos.getTotalElements(), response.getTotalElements());
 
     // Verify
     verify(this.productMapper).toEntity(filtersDto);
-    verify(this.productService).getAllProducts(filters);
+    verify(this.productService).getAllProducts(filters, pageable);
     verify(this.productMapper).toDto(products);
   }
 

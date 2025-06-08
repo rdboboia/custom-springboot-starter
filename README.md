@@ -23,9 +23,10 @@ These should not change too much. They are the base of this custom starter.
 This is the complete list of components and a high level overview of the functionality that each one provides:
 - **Lombok**
     + Common object manipulation methods.
-- **JPA + Spring Data JPA**
+- **JPA + Spring Data**
     + Persistence manager.
     + Query By Example (QBE) filtering.
+    + Pagination.
 - **Input Validation**
     + DTO validation.
     + DTO inheritance (for error responses).
@@ -120,7 +121,6 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
-- Pagination.
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.

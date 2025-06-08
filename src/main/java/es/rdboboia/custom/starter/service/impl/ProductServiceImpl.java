@@ -4,9 +4,10 @@ import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.repository.ProductRepository;
 import es.rdboboia.custom.starter.service.ProductService;
 import es.rdboboia.custom.starter.utils.FieldsUtils;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /** {@link ProductService} implementation. */
@@ -16,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
   private final ProductRepository productRepository;
 
   @Override
-  public List<Product> getAllProducts(Product filters) {
-    return this.productRepository.findAll(Example.of(filters));
+  public Page<Product> getAllProducts(Product filters, Pageable pageable) {
+    return this.productRepository.findAll(Example.of(filters), pageable);
   }
 
   @Override

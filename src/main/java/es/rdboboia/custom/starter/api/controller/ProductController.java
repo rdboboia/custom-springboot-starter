@@ -4,6 +4,7 @@ import es.rdboboia.custom.starter.api.dto.product.ProductDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPatchDto;
 import es.rdboboia.custom.starter.api.dto.product.ProductPostDto;
 import es.rdboboia.custom.starter.api.error.dto.ValidationErrorResponseDto;
+import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -11,7 +12,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,10 +32,12 @@ public interface ProductController {
   public static final String BASE_URL = "/product";
   public static final String ID_URL_VARIABLE = "/{id}";
 
-  @Operation(summary = "Get product list", description = "Get the list of all products")
+  @Operation(summary = "Get product list", description = "Get the pagineted list of all products")
   @ApiResponse(responseCode = "200", description = "List of products")
   @GetMapping
-  List<ProductDto> getAll(@ModelAttribute ProductDto filters);
+  Page<ProductDto> getAll(
+      @ModelAttribute ProductDto filters,
+      @PageableDefault(sort = {Product.Fields.id}) Pageable pageable);
 
   @Operation(summary = "Get product by id", description = "Get the product by ID")
   @ApiResponse(responseCode = "200", description = "Product object")

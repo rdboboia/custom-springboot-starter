@@ -48,6 +48,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <!-- Required for jackson pagination modules used in tests -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>4.3.0</version>
+        </dependency>
 
         <!-- Swagger URL: http://localhost:8080/swagger-ui/index.html -->
         <dependency>
