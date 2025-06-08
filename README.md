@@ -120,12 +120,18 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
-- Transactions.
 - Pagination.
+- Specifications.
+    + Some examples.
+    + Generic specifications? Like DSL Builder.
+- Controller JUnit improvement?
+    + Get the response from the call and check the response code as an assert.
+- Transactions.
 - Junit examples.
     + any error for primitives.
 - Cache.
-- Security ?
+- Internationalization?
+- Security?
     + peer token.
     + access token (service activity).
     + https.
