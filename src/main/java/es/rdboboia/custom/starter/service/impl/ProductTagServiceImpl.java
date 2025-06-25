@@ -20,19 +20,22 @@ public class ProductTagServiceImpl implements ProductTagService {
 
   @Override
   public void manageProductTags(Product product) {
-    List<ProductTag> tags = new ArrayList<>();
-    for (ProductTag tag : product.getTags()) {
-      Optional<ProductTag> byName = this.productTagRepository.findByName(tag.getName());
+    if (product.getTags() != null) {
 
-      if (byName.isPresent()) {
-        ProductTag existingTag = byName.get();
-        tags.add(existingTag);
-      } else {
-        this.productTagRepository.save(tag);
-        tags.add(tag);
+      List<ProductTag> tags = new ArrayList<>();
+      for (ProductTag tag : product.getTags()) {
+        Optional<ProductTag> byName = this.productTagRepository.findByName(tag.getName());
+
+        if (byName.isPresent()) {
+          ProductTag existingTag = byName.get();
+          tags.add(existingTag);
+        } else {
+          this.productTagRepository.save(tag);
+          tags.add(tag);
+        }
       }
-    }
 
-    product.setTags(tags);
+      product.setTags(tags);
+    }
   }
 }
