@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class ProductTagServiceImpl implements ProductTagService {
+
+  // Internal dependencies (repositories).
   private final ProductTagRepository productTagRepository;
 
   @Override

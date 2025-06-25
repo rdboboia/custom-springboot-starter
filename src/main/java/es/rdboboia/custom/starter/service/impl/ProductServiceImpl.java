@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
+
   // Internal dependencies (repositories).
   private final ProductRepository productRepository;
 
