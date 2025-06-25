@@ -43,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
   public Product updateProduct(Long id, Product product) {
     Product productById = this.getProductById(id);
     FieldsUtils.updateIfRequired(productById, product, List.of("tags"));
+    this.productTagService.manageProductTags(productById);
     return this.productRepository.save(productById);
   }
 
