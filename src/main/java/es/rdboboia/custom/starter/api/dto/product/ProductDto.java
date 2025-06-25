@@ -1,6 +1,5 @@
 package es.rdboboia.custom.starter.api.dto.product;
 
-import es.rdboboia.custom.starter.api.dto.producttag.ProductTagDto;
 import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeDto;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -31,5 +30,5 @@ public class ProductDto {
   private String name;
 
   private ProductTypeDto type;
-  private List<ProductTagDto> tags;
+  private List<String> tags;
 }

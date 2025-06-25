@@ -1,6 +1,5 @@
 package es.rdboboia.custom.starter.api.dto.product;
 
-import es.rdboboia.custom.starter.api.dto.producttag.ProductTagDto;
 import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeParentPostDto;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -27,5 +26,5 @@ public class ProductPostDto {
 
   @NotNull @Valid private ProductTypeParentPostDto type;
 
-  @Valid private List<ProductTagDto> tags;
+  @Valid private List<String> tags;
 }
