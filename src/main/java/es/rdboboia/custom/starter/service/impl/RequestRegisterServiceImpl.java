@@ -1,6 +1,5 @@
 package es.rdboboia.custom.starter.service.impl;
 
-import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.entity.Request;
 import es.rdboboia.custom.starter.persistence.repository.RequestRepository;
 import es.rdboboia.custom.starter.service.RequestRegisterService;
@@ -19,8 +18,8 @@ public class RequestRegisterServiceImpl implements RequestRegisterService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   @Override
-  public void registerRequest(Product product) {
-    Request request = Request.builder().data(product.toString()).build();
+  public void registerRequest(Object object) {
+    Request request = Request.builder().data(object.toString()).build();
     this.requestRepository.save(request);
   }
 }
