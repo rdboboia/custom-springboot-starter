@@ -26,5 +26,6 @@ public class ProductPostDto {
   private String name;
 
   @NotNull @Valid private ProductTypeParentPostDto type;
-  @NotNull @Valid private List<ProductTagDto> tags;
+
+  @Valid private List<ProductTagDto> tags;
 }
