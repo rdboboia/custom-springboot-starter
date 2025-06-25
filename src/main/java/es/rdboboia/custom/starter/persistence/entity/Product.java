@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,4 +38,8 @@ public class Product {
   @ManyToOne
   @JoinColumn(name = "FK_PRODUCT_TYPE", nullable = false)
   private ProductType type;
+
+  @ManyToMany
+  @JoinColumn(name = "FK_PRODUCT_TAG")
+  private List<ProductTag> tags;
 }
