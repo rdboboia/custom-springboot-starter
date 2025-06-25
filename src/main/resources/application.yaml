@@ -16,3 +16,7 @@ spring:
   liquibase:
     show-summary: verbose
     show-summary-output: all
+
+logging:
+  level:
+    '[es.rdboboia]': DEBUG
