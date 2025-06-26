@@ -59,6 +59,9 @@ This is the complete list of components and a high level overview of the functio
     + Checks for style, code and logic errors.
     + Custom configuration:
         * Using google_checks to match Google's style and format.
+- **Transaction examples**
+    + 2 DB modifications.
+    + New transaction inside existing one.
 
 ## Custom additions (might be migrated to maven central in the future if possible)
 - VerifyNoMoreInteractionsExtension
@@ -121,9 +124,6 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
-- Transactions.
-    + 2 DB modifications.
-    + New transaction inside existing one.
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
