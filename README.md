@@ -124,6 +124,7 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
+- Wiremock service to simulate external APIs.
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
