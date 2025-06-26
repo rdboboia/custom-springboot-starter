@@ -1,5 +1,6 @@
 package es.rdboboia.custom.starter.service.impl;
 
+import es.rdboboia.custom.starter.integration.rest.WiremockRestClient;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.repository.ProductRepository;
 import es.rdboboia.custom.starter.service.ProductService;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +27,14 @@ public class ProductServiceImpl implements ProductService {
   private final ProductTagService productTagService;
   private final RequestRegisterService requestRegisterService;
 
+  // External APIs.
+  private final WiremockRestClient wiremockRestClient;
+
   @Override
   public Page<Product> getAllProducts(Product filters, Pageable pageable) {
+    ResponseEntity<String> method = this.wiremockRestClient.method();
+    System.out.println(method);
+
     return this.productRepository.findAll(Example.of(filters), pageable);
   }
 

@@ -25,3 +25,4 @@ wiremock:
   server:
     files: classpath:wiremock/__files
     stubs: classpath:wiremock/mappings
+    port: 8090
