@@ -30,8 +30,8 @@ public class ProductTagServiceImpl implements ProductTagService {
           ProductTag existingTag = byName.get();
           tags.add(existingTag);
         } else {
-          this.productTagRepository.save(tag);
-          tags.add(tag);
+          ProductTag savedTag = this.productTagRepository.save(tag);
+          tags.add(savedTag);
         }
       }
 
