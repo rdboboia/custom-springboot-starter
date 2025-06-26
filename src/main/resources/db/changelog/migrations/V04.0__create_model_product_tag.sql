@@ -6,7 +6,7 @@
 
 --changeset liquibase:v04.0_create_seq_product_tag
 CREATE SEQUENCE "SEQ_PRODUCT_TAG" START WITH 1 INCREMENT BY 1;
---rollback DROP "SEQUENCE "SEQ_PRODUCT_TAG";
+--rollback DROP SEQUENCE "SEQ_PRODUCT_TAG";
 
 
 --changeset liquibase:v04.0_create_table_product_tag
