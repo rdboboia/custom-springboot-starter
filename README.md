@@ -121,12 +121,14 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
+- Transactions.
+    + 2 DB modifications.
+    + New transaction inside existing one.
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
 - Controller JUnit improvement?
     + Get the response from the call and check the response code as an assert.
-- Transactions.
 - Junit examples.
     + any error for primitives.
 - Cache.

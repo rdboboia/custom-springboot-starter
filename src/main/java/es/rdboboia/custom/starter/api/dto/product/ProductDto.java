@@ -3,6 +3,7 @@ package es.rdboboia.custom.starter.api.dto.product;
 import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeDto;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,4 +30,5 @@ public class ProductDto {
   private String name;
 
   private ProductTypeDto type;
+  private List<String> tags;
 }
