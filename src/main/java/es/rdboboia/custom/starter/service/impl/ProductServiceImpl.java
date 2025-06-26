@@ -32,9 +32,6 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Page<Product> getAllProducts(Product filters, Pageable pageable) {
-    ResponseEntity<String> method = this.wiremockRestClient.method();
-    System.out.println(method);
-
     return this.productRepository.findAll(Example.of(filters), pageable);
   }
 
@@ -47,6 +44,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public Product saveProduct(Product product) {
     this.requestRegisterService.registerRequest(product);
+
+    ResponseEntity<String> method = this.wiremockRestClient.publishProductToWeb();
+    System.out.println(method);
 
     this.productTagService.manageProductTags(product);
     return this.productRepository.save(product);

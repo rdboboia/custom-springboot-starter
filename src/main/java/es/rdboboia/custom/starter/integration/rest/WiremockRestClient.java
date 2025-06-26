@@ -18,7 +18,7 @@ public class WiremockRestClient {
    *
    * @return ResponseEntity containing the response body and status code.
    */
-  public ResponseEntity<String> method() {
+  public ResponseEntity<String> publishProductToWeb() {
     log.debug("Creating client...");
     RestClient client = RestClient.builder().baseUrl("http://localhost:8090").build();
 
