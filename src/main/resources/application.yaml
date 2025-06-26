@@ -20,3 +20,8 @@ spring:
 logging:
   level:
     '[es.rdboboia]': DEBUG
+
+wiremock:
+  server:
+    files: classpath:wiremock/__files
+    stubs: classpath:wiremock/mappings
