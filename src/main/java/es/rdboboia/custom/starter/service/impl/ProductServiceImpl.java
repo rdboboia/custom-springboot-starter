@@ -11,7 +11,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /** {@link ProductService} implementation. */
 @RequiredArgsConstructor
@@ -35,7 +34,6 @@ public class ProductServiceImpl implements ProductService {
     return this.productRepository.findById(id).orElseThrow();
   }
 
-  @Transactional
   @Override
   public Product saveProduct(Product product) {
     this.requestRegisterService.registerRequest(product);
@@ -44,7 +42,6 @@ public class ProductServiceImpl implements ProductService {
     return this.productRepository.save(product);
   }
 
-  @Transactional
   @Override
   public Product updateProduct(Long id, Product product) {
     this.requestRegisterService.registerRequest(product);
