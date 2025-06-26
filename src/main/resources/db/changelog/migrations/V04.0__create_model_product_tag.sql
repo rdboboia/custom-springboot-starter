@@ -34,7 +34,7 @@ PRIMARY KEY ("ID");
 
 --changeset liquibase:v04.0_create_seq_product_tag_relation
 CREATE SEQUENCE "SEQ_PRODUCT_TAG_RELATION" START WITH 1 INCREMENT BY 1;
---rollback DROP "SEQUENCE "SEQ_PRODUCT_TAG_RELATION";
+--rollback DROP SEQUENCE "SEQ_PRODUCT_TAG_RELATION";
 
 
 --changeset liquibase:v04.0_create_table_product_tag_relation
