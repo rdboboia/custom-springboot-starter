@@ -70,7 +70,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- H2 -->
+        <!-- H2 URL: http://localhost:8080/h2-console -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
