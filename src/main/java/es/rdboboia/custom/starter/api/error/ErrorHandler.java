@@ -55,6 +55,8 @@ public class ErrorHandler {
         "Exception occurred: {}. Request URL: {}",
         exception.getMessage(),
         request.getDescription(false));
+
+    log.debug("Exception stack trace: {}", exception);
   }
 
   /* ****************** */

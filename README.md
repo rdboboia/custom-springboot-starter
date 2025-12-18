@@ -59,6 +59,9 @@ This is the complete list of components and a high level overview of the functio
     + Checks for style, code and logic errors.
     + Custom configuration:
         * Using google_checks to match Google's style and format.
+- **Transaction examples**
+    + 2 DB modifications.
+    + New transaction inside existing one.
 
 ## Custom additions (might be migrated to maven central in the future if possible)
 - VerifyNoMoreInteractionsExtension
@@ -126,7 +129,6 @@ I'm usually working on the first element of the following list:
     + Generic specifications? Like DSL Builder.
 - Controller JUnit improvement?
     + Get the response from the call and check the response code as an assert.
-- Transactions.
 - Junit examples.
     + any error for primitives.
 - Cache.

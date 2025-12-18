@@ -24,7 +24,12 @@ class ProductServiceTest {
 
   @InjectMocks private ProductServiceImpl productServiceImpl;
 
+  // Internal dependencies (repositories).
   @Mock private ProductRepository productRepository;
+
+  // External dependencies (services).
+  @Mock private ProductTagService productTagService;
+  @Mock private RequestRegisterService requestRegisterService;
 
   @Test
   void getAllProductsTest() {
@@ -69,6 +74,8 @@ class ProductServiceTest {
     Product product = new Product();
 
     // Arrange
+    doNothing().when(this.requestRegisterService).registerRequest(product);
+    doNothing().when(this.productTagService).manageProductTags(product);
     when(this.productRepository.save(product)).thenReturn(product);
 
     // Act
@@ -88,7 +95,9 @@ class ProductServiceTest {
     Product product = Product.builder().name("name").build();
 
     // Arrange
+    doNothing().when(this.requestRegisterService).registerRequest(product);
     when(this.productRepository.findById(id)).thenReturn(Optional.of(productById));
+    doNothing().when(this.productTagService).manageProductTags(product);
     when(this.productRepository.save(productById)).thenReturn(productById);
 
     // Act

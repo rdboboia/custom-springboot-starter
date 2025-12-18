@@ -4,6 +4,7 @@ import es.rdboboia.custom.starter.api.dto.producttype.ProductTypeParentPostDto;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,4 +22,5 @@ public class ProductPatchDto {
   private String name;
 
   @Valid private ProductTypeParentPostDto type;
+  @Valid private List<String> tags;
 }

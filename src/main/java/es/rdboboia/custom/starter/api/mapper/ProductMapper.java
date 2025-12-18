@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
 
 /** {@link Product} mapper. */
-@Mapper(uses = {ProductTypeMapper.class})
+@Mapper(uses = {ProductTypeMapper.class, ProductTagMapper.class})
 public interface ProductMapper {
 
   /* ********* */
