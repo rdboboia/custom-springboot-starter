@@ -126,7 +126,7 @@ In the first list `Indentation` change `Tab Size` to `2`.
 I'm usually working on the first element of the following list:
 - Wiremock service to simulate external APIs.
 - Proper REST API integration
-    + Erorr handling
+    + Error handling
     + Client factory?
         * With config in application.yaml file
 - Specifications.
