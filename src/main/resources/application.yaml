@@ -7,7 +7,7 @@ spring:
     url: jdbc:h2:file:./testdb;MODE=ORACLE
     driverClassName: org.h2.Driver
     username: sa
-    password:
+    password: sa
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
@@ -16,13 +16,8 @@ spring:
   liquibase:
     show-summary: verbose
     show-summary-output: all
+    test-rollback-on-update: true
 
 logging:
   level:
     '[es.rdboboia]': DEBUG
-
-wiremock:
-  server:
-    files: classpath:wiremock/__files
-    stubs: classpath:wiremock/mappings
-    port: 8090

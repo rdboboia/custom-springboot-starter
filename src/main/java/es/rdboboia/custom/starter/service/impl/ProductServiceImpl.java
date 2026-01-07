@@ -8,6 +8,7 @@ import es.rdboboia.custom.starter.service.ProductTagService;
 import es.rdboboia.custom.starter.service.RequestRegisterService;
 import es.rdboboia.custom.starter.utils.FieldsUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /** {@link ProductService} implementation. */
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -45,11 +47,17 @@ public class ProductServiceImpl implements ProductService {
   public Product saveProduct(Product product) {
     this.requestRegisterService.registerRequest(product);
 
-    ResponseEntity<String> method = this.wiremockRestClient.publishProductToWeb();
-    System.out.println(method);
-
     this.productTagService.manageProductTags(product);
-    return this.productRepository.save(product);
+    Product savedProduct = this.productRepository.save(product);
+
+    ResponseEntity<String> apiResponse = this.wiremockRestClient.publishProductToWeb(savedProduct);
+    log.debug(
+        "Published product with id {} to external API. Response code: {}, body: {}",
+        savedProduct.getId(),
+        apiResponse.getStatusCode(),
+        apiResponse.getBody());
+
+    return savedProduct;
   }
 
   @Transactional
