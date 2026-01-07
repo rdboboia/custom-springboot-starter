@@ -18,7 +18,7 @@ However I encourage using Flyway's naming scheme to have compatibility with both
 Liquibase update is configured (by default) to be executed when the SpringBoot APP starts.
 
 ## Rollback
-Rollback must be manually done. To do so you need to crate a new maven run configuration:
+Rollback must be manually done. To do so you need to create a new maven run configuration:
 - Goals:
     + org.liquibase:liquibase-maven-plugin:rollback
 - Parameters:
