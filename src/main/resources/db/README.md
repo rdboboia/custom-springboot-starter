@@ -11,7 +11,7 @@ If a changeset fails the migration process is stopped. Only a fully executed cha
 When a fail occurs you can make the required changes to the changeset that failed (and any other future changeset) and try again. However, and this is important, you **CAN NOT** make any changes to already executed and tracked changesets. Doing so will raise a checksum error when rolling back.
 
 ## Versioning
-Note that Liquibase doesn't require file names to contain version numbers. However, if "includeAll" property is used (see: [https://docs.liquibase.com/change-types/includeall.html](https://docs.liquibase.com/change-types/includeall.html)) it is highly recommended, even mandatory I would say, to ensure that the proper order is followed. They don't have to be actual numbers, but some kind of naming scheme that preservers creation and execution order is necessary, like a date prefix.
+Note that Liquibase doesn't require file names to contain version numbers. However, if "includeAll" property is used (see: [https://docs.liquibase.com/change-types/includeall.html](https://docs.liquibase.com/change-types/includeall.html)) it is highly recommended, even mandatory I would say, to ensure that the proper order is followed. They don't have to be actual numbers, but some kind of naming scheme that preserves creation and execution order is necessary, like a date prefix.
 However I encourage using Flyway's naming scheme to have compatibility with both Liquibase and Flyway, which is another DB change manager.
 
 ## Update
