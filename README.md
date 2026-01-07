@@ -128,7 +128,7 @@ I'm usually working on the first element of the following list:
 - Proper REST API integration
     + Erorr handling
     + Client factory?
-        * With config in applitation.yaml file
+        * With config in application.yaml file
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
