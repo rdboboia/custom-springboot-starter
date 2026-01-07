@@ -124,6 +124,11 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
+- Wiremock service to simulate external APIs.
+- Proper REST API integration
+    + Erorr handling
+    + Client factory?
+        * With config in applitation.yaml file
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
@@ -137,6 +142,11 @@ I'm usually working on the first element of the following list:
     + peer token.
     + access token (service activity).
     + https.
+- Postman collection
+    + API call for all existing endpoints
+        * Examples
+        * Documentation? Might be redundant with the swagger documentation
+        * Security automatically managed with scripts (requires spring boot security first)?
 
 ## Low priority
 - Fix exception handler testing method.
