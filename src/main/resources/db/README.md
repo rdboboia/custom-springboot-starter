@@ -6,8 +6,8 @@ In addition to the official documentation I will put here some tips and tricks o
 ## Summary of how it works
 Liquibase update is automatically executed at app startup.
 It will execute all migration files inside the `migrations` folder that have not been successfully executed before.
-Each migration file might have multiple changesets. It is recommended to make each changeset atomic, specially DDL operations since they are commited by default.
-If a changeset fails the migration process is stopped. Only a fully executed changeset is commited and marked as executed (keep in mind the DDL thing).
+Each migration file might have multiple changesets. It is recommended to make each changeset atomic, specially DDL operations since they are committed by default.
+If a changeset fails the migration process is stopped. Only a fully executed changeset is committed and marked as executed (keep in mind the DDL thing).
 When a fail occurs you can make the required changes to the changeset that failed (and any other future changeset) and try again. However, and this is important, you **CAN NOT** make any changes to already executed and tracked changesets. Doing so will raise a checksum error when rolling back.
 
 ## Versioning
