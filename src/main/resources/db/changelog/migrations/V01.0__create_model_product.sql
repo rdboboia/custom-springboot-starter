@@ -6,7 +6,7 @@
 
 --changeset liquibase:v01.0_create_seq_product_type
 CREATE SEQUENCE "SEQ_PRODUCT_TYPE" START WITH 1 INCREMENT BY 1;
---rollback DROP "SEQUENCE "SEQ_PRODUCT_TYPE";
+--rollback DROP SEQUENCE "SEQ_PRODUCT_TYPE";
 
 
 --changeset liquibase:v01.0_create_table_product_type
