@@ -8,7 +8,7 @@ Liquibase update is automatically executed at app startup.
 It will execute all migration files inside the `migrations` folder that have not been successfully executed before.
 Each migration file might have multiple changesets. It is recommended to make each changeset atomic, specially DDL operations since they are commited by default.
 If a changeset fails the migration process is stopped. Only a fully executed changeset is commited and marked as executed (keep in mind the DDL thing).
-When a fail ocurrs you can make the required changes to the changeset that failed (and any other future changeset) and try again. However, and this is important, you **CAN NOT** make any changes to already executed and tracked changesets. Doing so will raise a checksum error when rolling back.
+When a fail occurs you can make the required changes to the changeset that failed (and any other future changeset) and try again. However, and this is important, you **CAN NOT** make any changes to already executed and tracked changesets. Doing so will raise a checksum error when rolling back.
 
 ## Versioning
 Note that Liquibase doesn't require file names to contain version numbers. However, if "includeAll" property is used (see: [https://docs.liquibase.com/change-types/includeall.html](https://docs.liquibase.com/change-types/includeall.html)) it is highly recommended, even mandatory I would say, to ensure that the proper order is followed. They don't have to be actual numbers, but some kind of naming scheme that preservers creation and execution order is necessary, like a date prefix.
