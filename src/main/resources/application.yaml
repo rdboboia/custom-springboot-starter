@@ -32,7 +32,7 @@ logging:
   level:
     '[es.rdboboia]': DEBUG
 
-# Wiremock configuration
+# WireMock configuration
 wiremock:
   server:
     port: 8090
