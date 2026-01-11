@@ -62,10 +62,10 @@ This is the complete list of components and a high level overview of the functio
 - **Transaction examples**
     + 2 DB modifications.
     + New transaction inside existing one.
-- **Wiremock**
+- **WireMock**
     + Mocks external APIs to isolate local development and simulate external API interactions.
 - **REST Client**
-    + Quick and "dirty" example provided with the wiremock integration. Will be improved in future iterations.
+    + Quick and "dirty" example provided with the WireMock integration. Will be improved in future iterations.
 
 ## Custom additions (might be migrated to maven central in the future if possible)
 - VerifyNoMoreInteractionsExtension
