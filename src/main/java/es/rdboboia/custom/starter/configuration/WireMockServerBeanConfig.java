@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Profile;
 @Profile(value = {"default"})
 public class WireMockServerBeanConfig {
 
-  private final WiremockConfigurationProperties properties;
+  private final WireMockConfigurationProperties properties;
 
   @Bean(initMethod = "start", destroyMethod = "stop")
   WireMockServer wireMockServer() {
