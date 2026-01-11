@@ -12,5 +12,5 @@ This library creates a HTTP (or even HTTPS) server that can simulate an external
 
 With Wiremock's configurations file we can define a response for each endpoint that, if matched, will be returned as specified.
 
-Wiremock will not start a server by default when the app starts. To do so we created this configuration file: `WireMockConfig`.
+Wiremock will not start a server by default when the app starts. To do so we created this configuration file: `WireMockServerBeanConfig`.
 Note that a Wiremock server annotation exists, but it's intended to be used in tests and will lead to errors if used in the main class.
