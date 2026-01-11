@@ -1,0 +1,16 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/fail"
+    },
+    "response": {
+        "status": 500,
+        "jsonBody": {
+            "error": "Internal Server Error",
+            "message": "An unexpected error occurred."
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
