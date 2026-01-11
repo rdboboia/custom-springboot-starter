@@ -42,11 +42,11 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         
-	    <!-- SpringBoot configuration processor (creates configuration metadata) -->
+        <!-- SpringBoot configuration processor (creates configuration metadata) -->
         <dependency>
-        	<groupId>org.springframework.boot</groupId>
-        	<artifactId>spring-boot-configuration-processor</artifactId>
-        	<optional>true</optional>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Required for junit extension implementation -->
