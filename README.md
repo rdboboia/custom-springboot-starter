@@ -62,6 +62,10 @@ This is the complete list of components and a high level overview of the functio
 - **Transaction examples**
     + 2 DB modifications.
     + New transaction inside existing one.
+- **WireMock**
+    + Mocks external APIs to isolate local development and simulate external API interactions.
+- **REST Client**
+    + Quick and "dirty" example provided with the WireMock integration. Will be improved in future iterations.
 
 ## Custom additions (might be migrated to maven central in the future if possible)
 - VerifyNoMoreInteractionsExtension
@@ -91,10 +95,11 @@ Some components are intented to be just an example and they should be removed or
 
 ## Format
 This project uses Google Java Format. You can find the official install configuration on Google's GitHub:
-https://github.com/google/google-java-format
+[https://github.com/google/google-java-format](https://github.com/google/google-java-format)
 
 ### Additional configuration (Eclipse IDE Only)
 For Eclipse (and STS) some additional configuration is needed. This might not apply to other IDEs.
+
 #### Organize Imports
 Additional configuration is required for Eclipse IDE to properly organize imports:
 To comply with Google's style, go to `Window` > `Preferences` > `Java` > `Code Style` > `Organize Imports`, delete all default groups and add a single `*` static import group and a single `*` import group. Apply changes.
@@ -124,14 +129,13 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 # TODOs
 I'm usually working on the first element of the following list:
-- Wiremock service to simulate external APIs.
+- Specifications.
+    + Some examples.
+    + Generic specifications? Like DSL Builder.
 - Proper REST API integration
     + Error handling
     + Client factory?
         * With config in application.yaml file
-- Specifications.
-    + Some examples.
-    + Generic specifications? Like DSL Builder.
 - Controller JUnit improvement?
     + Get the response from the call and check the response code as an assert.
 - Junit examples.
@@ -152,3 +156,4 @@ I'm usually working on the first element of the following list:
 - Fix exception handler testing method.
 - Generic components (generic mapper, generic repo, etc).
 - Upload utils to maven central.
+- Build pipeline.

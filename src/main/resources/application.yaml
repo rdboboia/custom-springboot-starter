@@ -1,23 +1,38 @@
+# SpringBoot configuration
 spring:
+  
+  # H2 configuration
   h2:
     # Console URL: http://localhost:8080/h2-console
     console:
       enabled: true
+  
+  # Datasource configuration
   datasource:
     url: jdbc:h2:file:./testdb;MODE=ORACLE
     driverClassName: org.h2.Driver
     username: sa
     password: sa
+  
+  # JPA configuration
   jpa:
     database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: none
     show-sql: true
+  
+  # Liquibase configuration
   liquibase:
     show-summary: verbose
     show-summary-output: all
     test-rollback-on-update: true
 
+# Logging configuration
 logging:
   level:
     '[es.rdboboia]': DEBUG
+
+# WireMock configuration
+wiremock:
+  server:
+    port: 8090
