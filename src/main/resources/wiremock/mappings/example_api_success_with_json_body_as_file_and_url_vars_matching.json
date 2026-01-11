@@ -1,6 +1,6 @@
 {
     "request": {
-        "method": "GET",
+        "method": "POST",
         "urlPattern": "/sync/product/([0-9]*)"
     },
     "response": {

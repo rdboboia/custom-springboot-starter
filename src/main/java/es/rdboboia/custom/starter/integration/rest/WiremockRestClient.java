@@ -25,7 +25,7 @@ public class WiremockRestClient {
     log.debug("Performing API call...");
     ResponseEntity<String> response =
         this.client
-            .get()
+            .post()
             .uri("/sync/product/{productId}", product.getId())
             .retrieve()
             .toEntity(String.class);
