@@ -34,7 +34,7 @@ class ProductServiceTest {
   @Mock private RequestRegisterService requestRegisterService;
 
   // External APIs.
-  @Mock private WireMockRestClient wiremockRestClient;
+  @Mock private WireMockRestClient wireMockRestClient;
 
   @Test
   void getAllProductsTest() {
@@ -83,7 +83,7 @@ class ProductServiceTest {
     doNothing().when(this.requestRegisterService).registerRequest(product);
     doNothing().when(this.productTagService).manageProductTags(product);
     when(this.productRepository.save(product)).thenReturn(product);
-    when(this.wiremockRestClient.publishProductToWeb(product)).thenReturn(responseEntity);
+    when(this.wireMockRestClient.publishProductToWeb(product)).thenReturn(responseEntity);
 
     // Act
     Product savedProduct = this.productServiceImpl.saveProduct(product);
