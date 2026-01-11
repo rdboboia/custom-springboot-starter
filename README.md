@@ -156,3 +156,4 @@ I'm usually working on the first element of the following list:
 - Fix exception handler testing method.
 - Generic components (generic mapper, generic repo, etc).
 - Upload utils to maven central.
+- Build pipeline.
