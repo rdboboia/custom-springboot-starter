@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "wiremock.server")
 @Configuration
 @Data
-public class WiremockConfigurationProperties {
+public class WireMockConfigurationProperties {
   private int port;
 }
