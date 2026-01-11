@@ -5,6 +5,7 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * Configuration class to set up a WireMock server for mocking HTTP services. The server is
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @RequiredArgsConstructor
 @Configuration
+@Profile(value = {"default"})
 public class WireMockServerBeanConfig {
 
   private final WiremockConfigurationProperties properties;
