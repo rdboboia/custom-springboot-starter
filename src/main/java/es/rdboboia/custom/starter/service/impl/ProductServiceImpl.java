@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
   private final RequestRegisterService requestRegisterService;
 
   // External APIs.
-  private final WireMockRestClient wiremockRestClient;
+  private final WireMockRestClient wireMockRestClient;
 
   @Override
   public Page<Product> getAllProducts(Product filters, Pageable pageable) {
@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
     this.productTagService.manageProductTags(product);
     Product savedProduct = this.productRepository.save(product);
 
-    ResponseEntity<String> apiResponse = this.wiremockRestClient.publishProductToWeb(savedProduct);
+    ResponseEntity<String> apiResponse = this.wireMockRestClient.publishProductToWeb(savedProduct);
     log.debug(
         "Published product with id {} to external API. Response code: {}, body: {}",
         savedProduct.getId(),
