@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 /**
- * A simple REST client that performs an API call to a Wiremock server. This client is used to
+ * A simple REST client that performs an API call to a WireMock server. This client is used to
  * demonstrate how to make REST calls in a Spring application.
  */
 @Slf4j
