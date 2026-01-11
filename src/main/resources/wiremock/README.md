@@ -5,9 +5,9 @@ In addition to the official documentation I will put here some tips and tricks o
 
 ## Summary of how it works
 This library creates a HTTP (or even HTTPS) server that can simulate an external API. I'm using wiremock to achieve 2 goals:
-- ** Demonstration purposes **
+- **Demonstration purposes**
     + Have an "external" API for an API consumer example.
-- ** External API replacement (mocking) **
+- **External API replacement (mocking)**
     + Assuming this is a real project this can replace external APIs with mocks so that we don't depend on external factors for local development.
 
 With Wiremock's configurations file we can define a response for each endpoint that, if matched, will be returned as specified.
