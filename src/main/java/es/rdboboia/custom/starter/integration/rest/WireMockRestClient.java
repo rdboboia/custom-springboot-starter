@@ -12,7 +12,7 @@ import org.springframework.web.client.RestClient;
  */
 @Slf4j
 @Component
-public class WiremockRestClient {
+public class WireMockRestClient {
   private final RestClient client = RestClient.builder().baseUrl("http://localhost:8090").build();
 
   /**

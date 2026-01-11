@@ -6,7 +6,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import es.rdboboia.custom.starter.extensions.VerifyNoMoreInteractionsExtension;
-import es.rdboboia.custom.starter.integration.rest.WiremockRestClient;
+import es.rdboboia.custom.starter.integration.rest.WireMockRestClient;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.repository.ProductRepository;
 import es.rdboboia.custom.starter.service.impl.ProductServiceImpl;
@@ -34,7 +34,7 @@ class ProductServiceTest {
   @Mock private RequestRegisterService requestRegisterService;
 
   // External APIs.
-  @Mock private WiremockRestClient wiremockRestClient;
+  @Mock private WireMockRestClient wiremockRestClient;
 
   @Test
   void getAllProductsTest() {

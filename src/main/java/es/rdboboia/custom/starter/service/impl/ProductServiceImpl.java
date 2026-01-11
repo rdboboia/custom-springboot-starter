@@ -1,6 +1,6 @@
 package es.rdboboia.custom.starter.service.impl;
 
-import es.rdboboia.custom.starter.integration.rest.WiremockRestClient;
+import es.rdboboia.custom.starter.integration.rest.WireMockRestClient;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.repository.ProductRepository;
 import es.rdboboia.custom.starter.service.ProductService;
@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
   private final RequestRegisterService requestRegisterService;
 
   // External APIs.
-  private final WiremockRestClient wiremockRestClient;
+  private final WireMockRestClient wiremockRestClient;
 
   @Override
   public Page<Product> getAllProducts(Product filters, Pageable pageable) {
