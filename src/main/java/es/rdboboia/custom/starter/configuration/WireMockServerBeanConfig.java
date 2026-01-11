@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 
 /**
  * Configuration class to set up a WireMock server for mocking HTTP services. The server runs on
- * a port configured via {@link WiremockConfigurationProperties} and uses mappings and files
+ * a port configured via {@link WireMockConfigurationProperties} and uses mappings and files
  * located in the "wiremock" directory on the classpath.
  */
 @RequiredArgsConstructor
