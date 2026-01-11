@@ -124,6 +124,21 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 
 
+
+# Recommended configuration (not mandatory)
+
+## GIT
+The git config can be set locally for each project or globally for all repositories.
+I recommend and will document how to do it globally. Follow these steps:
+- Open `Window` > `Preferences`.
+- Go to `Version Control (Team)` > `Git` > `Configuration`.
+- Select the `User Settings` tab.
+- Add the following key-value entries:
+	+ `user.name` = _<your_name_here>_
+	+ `user.email` = _<your_email_here>_
+	+ `remote.origin.prune` = `true`
+		* This removes deleted branches from origin.
+
 ---
 ---
 
