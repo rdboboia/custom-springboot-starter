@@ -7,11 +7,13 @@ import es.rdboboia.custom.starter.service.ProductService;
 import es.rdboboia.custom.starter.service.ProductTagService;
 import es.rdboboia.custom.starter.service.RequestRegisterService;
 import es.rdboboia.custom.starter.utils.FieldsUtils;
+import java.lang.reflect.Field;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,55 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public Page<Product> getAllProducts(Product filters, Pageable pageable) {
     return this.productRepository.findAll(Example.of(filters), pageable);
+  }
+
+  @Override
+  public Page<Product> getAllProductsWithCriteria(Product filters, Pageable pageable) {
+    // Implement filtering using specification and criteria here.
+    Specification<Product> specification = Specification.unrestricted();
+
+    if (filters.getName() != null) {
+      specification =
+          specification.and(
+              (root, query, criteriaBuilder) ->
+                  criteriaBuilder.like(
+                      root.get(Product.Fields.name), "%" + filters.getName() + "%"));
+    }
+    if (filters.getId() != null) {
+      specification =
+          specification.and(
+              (root, query, criteriaBuilder) ->
+                  criteriaBuilder.equal(root.get(Product.Fields.id), filters.getId()));
+    }
+    // Add more filters as needed.
+
+    return this.productRepository.findAll(specification, pageable);
+  }
+
+  @Override
+  public Page<Product> getAllWithCriteria(Product filters, Pageable pageable) {
+    Specification<Product> specification = Specification.unrestricted();
+
+    for (Field field : filters.getClass().getDeclaredFields()) {
+      field.setAccessible(true);
+      try {
+        Object value = field.get(filters);
+        if (value != null) {
+          specification =
+              specification.and(
+                  (root, query, cb) -> {
+                    if (value instanceof String) {
+                      return cb.like(root.get(field.getName()), "%" + value + "%");
+                    } else {
+                      return cb.equal(root.get(field.getName()), value);
+                    }
+                  });
+        }
+      } catch (IllegalAccessException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    return this.productRepository.findAll(specification, pageable);
   }
 
   @Override

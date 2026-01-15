@@ -22,7 +22,7 @@ public class ProductControllerImpl implements ProductController {
   @Override
   public Page<ProductDto> getAll(ProductDto filters, Pageable pageable) {
     return this.productMapper.toDto(
-        this.productService.getAllProducts(this.productMapper.toEntity(filters), pageable));
+        this.productService.getAllWithCriteria(this.productMapper.toEntity(filters), pageable));
   }
 
   @Override

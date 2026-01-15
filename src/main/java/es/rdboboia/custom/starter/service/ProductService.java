@@ -9,6 +9,10 @@ public interface ProductService {
 
   Page<Product> getAllProducts(Product filters, Pageable pageable);
 
+  Page<Product> getAllProductsWithCriteria(Product filters, Pageable pageable);
+
+  Page<Product> getAllWithCriteria(Product filters, Pageable pageable);
+
   Product getProductById(Long id);
 
   Product saveProduct(Product product);
