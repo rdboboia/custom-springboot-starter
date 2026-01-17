@@ -42,7 +42,7 @@ public class ProductSpecificationV2 {
   public static <T> Specification<T> applyAllNonNullFilters(
       T filters, List<String> fieldsToIgnore) {
 
-    Specification<T> specification = Specification.where(null);
+    Specification<T> specification = Specification.unrestricted();
     try {
       List<Field> fieldsToUpdate =
           Arrays.stream(filters.getClass().getDeclaredFields())
