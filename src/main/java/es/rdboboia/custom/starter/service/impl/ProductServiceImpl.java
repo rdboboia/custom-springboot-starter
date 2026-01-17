@@ -3,15 +3,16 @@ package es.rdboboia.custom.starter.service.impl;
 import es.rdboboia.custom.starter.integration.rest.WireMockRestClient;
 import es.rdboboia.custom.starter.persistence.entity.Product;
 import es.rdboboia.custom.starter.persistence.repository.ProductRepository;
+import es.rdboboia.custom.starter.persistence.specification.ProductSpecificationV2;
 import es.rdboboia.custom.starter.service.ProductService;
 import es.rdboboia.custom.starter.service.ProductTagService;
 import es.rdboboia.custom.starter.service.RequestRegisterService;
 import es.rdboboia.custom.starter.utils.FieldsUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,11 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Page<Product> getAllProducts(Product filters, Pageable pageable) {
-    return this.productRepository.findAll(Example.of(filters), pageable);
+    //    return this.productRepository.findAll(Example.of(filters), pageable);
+    Specification<Product> applyAllNonNullFilters =
+        ProductSpecificationV2.applyAllNonNullFilters(filters);
+
+    return this.productRepository.findAll(applyAllNonNullFilters, pageable);
   }
 
   @Override

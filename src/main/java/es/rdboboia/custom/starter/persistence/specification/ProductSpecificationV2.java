@@ -57,7 +57,7 @@ public class ProductSpecificationV2 {
         Method getter = filters.getClass().getMethod("get" + capitalizedMethod);
         Object value = getter.invoke(filters);
 
-        if (value != null && !isJpaRelatedField(f)) {
+        if (value != null) {
           specification =
               specification.and(
                   (root, query, criteriaBuilder) -> {
