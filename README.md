@@ -62,6 +62,10 @@ This is the complete list of components and a high level overview of the functio
 - **Transaction examples**
     + 2 DB modifications.
     + New transaction inside existing one.
+- **WireMock**
+    + Mocks external APIs to isolate local development and simulate external API interactions.
+- **REST Client**
+    + Quick and "dirty" example provided with the WireMock integration. Will be improved in future iterations.
 
 ## Custom additions (might be migrated to maven central in the future if possible)
 - VerifyNoMoreInteractionsExtension
@@ -91,10 +95,11 @@ Some components are intented to be just an example and they should be removed or
 
 ## Format
 This project uses Google Java Format. You can find the official install configuration on Google's GitHub:
-https://github.com/google/google-java-format
+[https://github.com/google/google-java-format](https://github.com/google/google-java-format)
 
 ### Additional configuration (Eclipse IDE Only)
 For Eclipse (and STS) some additional configuration is needed. This might not apply to other IDEs.
+
 #### Organize Imports
 Additional configuration is required for Eclipse IDE to properly organize imports:
 To comply with Google's style, go to `Window` > `Preferences` > `Java` > `Code Style` > `Organize Imports`, delete all default groups and add a single `*` static import group and a single `*` import group. Apply changes.
@@ -119,6 +124,21 @@ In the first list `Indentation` change `Tab Size` to `2`.
 
 
 
+
+# Recommended configuration (not mandatory)
+
+## GIT
+The git config can be set locally for each project or globally for all repositories.
+I recommend and will document how to do it globally. Follow these steps:
+- Open `Window` > `Preferences`.
+- Go to `Version Control (Team)` > `Git` > `Configuration`.
+- Select the `User Settings` tab.
+- Add the following key-value entries:
+	+ `user.name` = _<your_name_here>_
+	+ `user.email` = _<your_email_here>_
+	+ `remote.origin.prune` = `true`
+		* This removes deleted branches from origin.
+
 ---
 ---
 
@@ -127,6 +147,10 @@ I'm usually working on the first element of the following list:
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
+- Proper REST API integration
+    + Error handling
+    + Client factory?
+        * With config in application.yaml file
 - Controller JUnit improvement?
     + Get the response from the call and check the response code as an assert.
 - Junit examples.
@@ -137,8 +161,14 @@ I'm usually working on the first element of the following list:
     + peer token.
     + access token (service activity).
     + https.
+- Postman collection
+    + API call for all existing endpoints
+        * Examples
+        * Documentation? Might be redundant with the swagger documentation
+        * Security automatically managed with scripts (requires spring boot security first)?
 
 ## Low priority
 - Fix exception handler testing method.
 - Generic components (generic mapper, generic repo, etc).
 - Upload utils to maven central.
+- Build pipeline.
