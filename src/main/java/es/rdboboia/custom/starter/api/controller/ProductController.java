@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -37,7 +38,7 @@ public interface ProductController {
   @GetMapping
   Page<ProductDto> getAll(
       @ModelAttribute ProductDto filters,
-      @PageableDefault(sort = {Product.Fields.id}) Pageable pageable);
+      @ParameterObject @PageableDefault(sort = {Product.Fields.id}) Pageable pageable);
 
   @Operation(summary = "Get product by id", description = "Get the product by ID")
   @ApiResponse(responseCode = "200", description = "Product object")
