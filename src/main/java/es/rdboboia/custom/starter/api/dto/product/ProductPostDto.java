@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 public class ProductPostDto {
 
   @NotBlank
+  @Size(max = 100)
   @Schema(description = ProductDto.NAME_DESCRIPTION, example = ProductDto.NAME_EXAMPLE)
   private String name;
 

@@ -11,7 +11,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,9 +34,7 @@ public class Product {
   @Column
   private Long id;
 
-  @Column
-  @Size(max = 100, message = "Name must not exceed 100 characters")
-  private String name;
+  @Column private String name;
 
   @ManyToOne
   @JoinColumn(name = "FK_PRODUCT_TYPE", nullable = false)
