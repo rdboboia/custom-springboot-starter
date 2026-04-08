@@ -147,6 +147,10 @@ I'm usually working on the first element of the following list:
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
+- Build pipeline
+    + Using GitHub Actions
+        * Maven install
+        * PR trigger?
 - Proper REST API integration
     + Error handling
     + Client factory?
@@ -171,4 +175,3 @@ I'm usually working on the first element of the following list:
 - Fix exception handler testing method.
 - Generic components (generic mapper, generic repo, etc).
 - Upload utils to maven central.
-- Build pipeline.
