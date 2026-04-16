@@ -147,6 +147,7 @@ I'm usually working on the first element of the following list:
 - Specifications.
     + Some examples.
     + Generic specifications? Like DSL Builder.
+- Logger utils
 - Build pipeline
     + Using GitHub Actions
         * Maven install
