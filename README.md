@@ -149,7 +149,7 @@ I'm usually working on the first element of the following list:
     + Generic specifications? Like DSL Builder.
 - Scheduler
 	+ Example of scheduled process.
-    + Shedlock.
+    + Schedlock.
 - Logger utils
 - Build pipeline
     + Using GitHub Actions
@@ -174,6 +174,7 @@ I'm usually working on the first element of the following list:
         * Examples
         * Documentation? Might be redundant with the swagger documentation
         * Security automatically managed with scripts (requires spring boot security first)?
+- Swagger / OpenAPI workaround for LocalDate and LocalDateTime?
 
 ## Low priority
 - Fix exception handler testing method.
