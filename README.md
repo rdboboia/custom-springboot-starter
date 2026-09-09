@@ -175,6 +175,7 @@ I'm usually working on the first element of the following list:
         * Documentation? Might be redundant with the swagger documentation
         * Security automatically managed with scripts (requires spring boot security first)?
 - Swagger / OpenAPI workaround for LocalDate and LocalDateTime?
+- Monitoring / Observability
 
 ## Low priority
 - Fix exception handler testing method.
