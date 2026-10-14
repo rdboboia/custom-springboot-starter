@@ -3,10 +3,11 @@ package es.rdboboia.custom.starter.persistence.model.validator;
 import es.rdboboia.custom.starter.persistence.entity.ProductType;
 import es.rdboboia.custom.starter.persistence.model.ProductTypeEnum;
 import es.rdboboia.custom.starter.persistence.repository.ProductTypeRepository;
+import es.rdboboia.custom.starter.utils.LoggerUtils;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,18 +17,22 @@ import org.springframework.stereotype.Component;
  * This class validates that the defined enums are consistent with the DB data that they represent
  * at application startup.
  */
-@Slf4j
 @RequiredArgsConstructor
 @Component
 // @Profile({ "local" })
 public class EnumIntegrityValidator {
+  // TODO: review log usage.
+  Logger log = org.apache.logging.log4j.LogManager.getLogger(EnumIntegrityValidator.class);
+  LoggerUtils loggerUtilsInstance = LoggerUtils.getLoggerUtilsInstance();
 
   private final ProductTypeRepository productTypeRepository;
 
   /** Validate {@link ProductTypeEnum}. */
   @EventListener(ApplicationReadyEvent.class)
   public void validateProductTypeEnumIntegrity() {
-    log.info("Validating Product type enum integrity...");
+    this.loggerUtilsInstance.logEnteringMethod(this.log);
+
+    this.log.info("Validating Product type enum integrity...");
 
     List<ProductType> all = this.productTypeRepository.findAll();
     ProductTypeEnum[] values = ProductTypeEnum.values();
@@ -38,7 +43,7 @@ public class EnumIntegrityValidator {
       this.checkIntegrity(all, entity);
     }
 
-    log.info("Product type enum integrity is valid.");
+    this.log.info("Product type enum integrity is valid.");
   }
 
   /**
